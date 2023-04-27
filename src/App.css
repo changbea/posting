@@ -1,0 +1,26 @@
+.App {
+  /* font-family: sans-serif;
+  text-align: center; */
+}
+
+.header {
+  outline: 1px solid blue;
+  /*text-align: center;*/
+  background-color: yellowgreen;
+  color: white;
+}
+
+.header a {
+  color: white;
+}
+
+.header h1, p, button {
+  text-align: center;
+}
+
+.section {
+  outline: 1px solid blue;
+  text-align: center;
+  background-color: yellowgreen;
+  color: white;
+}
