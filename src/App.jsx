@@ -22,7 +22,7 @@ function Header() {
       </a>
       <h1 className="h1StartPage">START PAGE</h1>
       <p className="pTemplateBy">Template by me</p>
-      <button className="buttonGetStarted">Get Started</button>
+      <button className="buttonGetStarted">Get Started button</button>
     </header>
   );
 }
