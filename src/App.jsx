@@ -28,11 +28,19 @@ function Header() {
 }
   
 // Section
-function Section() {
+function Main() {
   return (
-    <body className="section">
-      <p>menu</p>
-    </body>
+    <main className="main">
+      <p>menus</p>
+    </main>
+  )
+}
+
+function Footer() {
+  return (
+    <footer>
+      <p>copyrights</p>
+    </footer>
   )
 }
 
@@ -40,7 +48,8 @@ export default function App() {
   return (
     <div className="App">
       <Header />
-      <Section />
+      <Main />
+      <Footer />
     </div>
   );
 }

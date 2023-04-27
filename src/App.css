@@ -18,9 +18,18 @@
   text-align: center;
 }
 
-.section {
+Main p{
+  margin: 0;
   outline: 1px solid blue;
   text-align: center;
+  background-color: yellowgreen;
+  color: white;
+}
+
+Footer p{
+  margin: 0;
+  outline: 1px solid blue;
+  /*text-align: center;*/
   background-color: yellowgreen;
   color: white;
 }
