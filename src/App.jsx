@@ -1,55 +1,30 @@
 import { useState } from 'react'
 import './App.css'
-
-// Header
-function Header() {
-  return (
-    <header className="header">
-      <a className="navHome" href="#">
-        Home
-      </a>
-      <a className="navLink1" href="#">
-        Link1
-      </a>
-      <a className="navLink2" href="#">
-        Link2
-      </a>
-      <a className="navLink3" href="#">
-        Link3
-      </a>
-      <a className="navLink4" href="#">
-        Link4
-      </a>
-      <h1 className="h1StartPage">START PAGE</h1>
-      <p className="pTemplateBy">Template by me</p>
-      <button className="buttonGetStarted">Get Started button</button>
-    </header>
-  );
-}
-  
-// Section
-function Main() {
-  return (
-    <main className="main">
-      <p>menus</p>
-    </main>
-  )
-}
-
-function Footer() {
-  return (
-    <footer>
-      <p>copyrights</p>
-    </footer>
-  )
-}
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Heading from './components/Heading';
+import Drink from './components/Drink';
+import Subway from './components/Subway';
+import Cards from './components/Cards';
+import Page from './recommendations/router/Page';
+import Resume from './recommendations/router/Resume';
+import League from './leagues/Leagues'
+import Gamersp from './components/Gamersp';
 
 export default function App() {
   return (
-    <div className="App">
-      <Header />
-      <Main />
-      <Footer />
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={ <Heading /> } />
+          <Route path="/drink" element = { <Drink /> } />
+          <Route path="/subway" element = { <Subway /> } />
+          <Route path="/cards" element = { <Cards /> } />
+          <Route path="/recommendations" element = { <Page /> } />
+          <Route path="/resume" element = { <Resume /> } />
+          <Route path="/leagues" element = { <League/> } />
+          <Route path="/gamersp" element = { <Gamersp /> } />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
