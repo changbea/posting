@@ -20,7 +20,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/newpage/" element={ <Heading /> } />
-          <Route path="/drink" element = { <Drink /> } />
+          {/* <Route path="/drink" element = { <Drink /> } />
           <Route path="/subway" element = { <Subway /> } />
           <Route path="/cards" element = { <Cards /> } />
           <Route path="/recommendations" element = { <Page /> } />
@@ -30,7 +30,7 @@ export default function App() {
           <Route path="/gamesrspextended" element = { <Gamesrspextended /> } />
           <Route path="/gamefinding" element = { <Gamefinding /> } />
           <Route path="/gameflipping" element = { <Gameflipping /> } />
-          <Route path="/gamehint" element = { <Gamehint /> } />
+          <Route path="/gamehint" element = { <Gamehint /> } /> */}
         </Routes>
       </BrowserRouter>
     </div>

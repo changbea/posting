@@ -30,6 +30,7 @@ function Hint() {
   // const [ball, setBall] = useState(0);
   if (num !== []) {
     num = [];
+    console.log('number')
   }
   const show = [];
   let ball = 0;
