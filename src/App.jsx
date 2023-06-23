@@ -30,7 +30,7 @@ export default function App() {
           <Route path="/gamesrspextended" element = { <Gamesrspextended /> } />
           <Route path="/gamefinding" element = { <Gamefinding /> } />
           <Route path="/gameflipping" element = { <Gameflipping /> } />
-          <Route path="/gamehint" element = { <Gamehint /> } />
+          {/* <Route path="/gamehint" element = { <Gamehint /> } /> */}
         </Routes>
       </BrowserRouter>
     </div>
