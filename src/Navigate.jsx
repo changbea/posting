@@ -9,17 +9,17 @@ export default function Navigate() {
                 <img src={logo} alt='react' width='5%' height='5%' />
             </Link>
             <br />
-            <Link to="/drink">Drink&emsp;</Link>
-            <Link to="/subway">Subway&emsp;</Link>
-            <Link to="/cards">Cards&emsp;</Link>
-            <Link to="/recommendations">Recommendations&emsp;</Link>
-            <Link to="/resume">Resume&emsp;</Link>
-            <Link to="/leagues">Leagues&emsp;</Link>
-            <Link to="/gamersp">Gamersp&emsp;</Link>
-            <Link to="/gamesrspextended">Gamesrspextended&emsp;</Link>
-            <Link to="/gamefinding">Gamefinding&emsp;</Link>
-            <Link to="/gameflipping">Gameflipping&emsp;</Link>
-            <Link to="/gamehint">Gamehint&emsp;</Link>
+            <Link to="/newpage/drink">Drink&emsp;</Link>
+            <Link to="/newpage/subway">Subway&emsp;</Link>
+            <Link to="/newpage/cards">Cards&emsp;</Link>
+            <Link to="/newpage/recommendations">Recommendations&emsp;</Link>
+            <Link to="/newpage/resume">Resume&emsp;</Link>
+            <Link to="/newpage/leagues">Leagues&emsp;</Link>
+            <Link to="/newpage/gamersp">Gamersp&emsp;</Link>
+            <Link to="/newpage/gamesrspextended">Gamesrspextended&emsp;</Link>
+            <Link to="/newpage/gamefinding">Gamefinding&emsp;</Link>
+            <Link to="/newpage/gameflipping">Gameflipping&emsp;</Link>
+            <Link to="/newpage/gamehint">Gamehint&emsp;</Link>
         </div>
     );      
 }

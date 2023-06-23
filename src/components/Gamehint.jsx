@@ -28,10 +28,11 @@ function Hint() {
   // const [display, setDisplay] = useState(0);
   // const [strike, setStrike] = useState(0);
   // const [ball, setBall] = useState(0);
-  if (num !== []) {
-    num = [];
-    console.log('number')
-  }
+  // if (num !== []) {
+  //   num = [];
+  //   console.log('number')
+  // }
+  num = [];
   const show = [];
   let ball = 0;
   let strike = 0;

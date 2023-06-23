@@ -20,17 +20,17 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/newpage/" element={ <Heading /> } />
-          {/* <Route path="/drink" element = { <Drink /> } />
-          <Route path="/subway" element = { <Subway /> } />
-          <Route path="/cards" element = { <Cards /> } />
-          <Route path="/recommendations" element = { <Page /> } />
-          <Route path="/resume" element = { <Resume /> } />
-          <Route path="/leagues" element = { <League/> } />
-          <Route path="/gamersp" element = { <Gamersp /> } />
-          <Route path="/gamesrspextended" element = { <Gamesrspextended /> } />
-          <Route path="/gamefinding" element = { <Gamefinding /> } />
-          <Route path="/gameflipping" element = { <Gameflipping /> } />
-          <Route path="/gamehint" element = { <Gamehint /> } /> */}
+          <Route path="/newpage/drink" element = { <Drink /> } />
+          <Route path="/newpage/subway" element = { <Subway /> } />
+          <Route path="/newpage/cards" element = { <Cards /> } />
+          <Route path="/newpage/recommendations" element = { <Page /> } />
+          <Route path="/newpage/resume" element = { <Resume /> } />
+          <Route path="/newpage/leagues" element = { <League/> } />
+          <Route path="/newpage/gamersp" element = { <Gamersp /> } />
+          <Route path="/newpage/gamesrspextended" element = { <Gamesrspextended /> } />
+          <Route path="/newpage/gamefinding" element = { <Gamefinding /> } />
+          <Route path="/newpage/gameflipping" element = { <Gameflipping /> } />
+          <Route path="/newpage/gamehint" element = { <Gamehint /> } />
         </Routes>
       </BrowserRouter>
     </div>
