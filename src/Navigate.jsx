@@ -16,6 +16,10 @@ export default function Navigate() {
             <Link to="/resume">Resume&emsp;</Link>
             <Link to="/leagues">Leagues&emsp;</Link>
             <Link to="/gamersp">Gamersp&emsp;</Link>
+            <Link to="/gamesrspextended">Gamesrspextended&emsp;</Link>
+            <Link to="/gamefinding">Gamefinding&emsp;</Link>
+            <Link to="/gameflipping">Gameflipping&emsp;</Link>
+            <Link to="/gamehint">Gamehint&emsp;</Link>
         </div>
     );      
 }

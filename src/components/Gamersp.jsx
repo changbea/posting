@@ -1,4 +1,5 @@
 import Navigate from '../Navigate';
+import { useState } from 'react';
 import './Gamersp.css';
 import Gamerspextended from './Gamesrspextended';
 
@@ -70,6 +71,21 @@ function Compete(props) {
     }
 }
 
+
+function Mimic() {
+    const num = 5;
+    const selection = []
+    const [stage, setStage] = useState(1);
+    for (let count = 0; count < num**2; count++) {
+      selection.push(<button>&#127760;</button>)
+      if ((count+1) % num === 0){
+        selection.push(<br />)
+      }
+    }
+    
+    return (selection)
+}
+
 export default function Gamersp() {
     function newChoice() {
         window.location.reload(false);
@@ -91,6 +107,7 @@ export default function Gamersp() {
                <button  onClick ={ newChoice }>reload</button>
             </div>
         </div>
+        <Mimic />
       </main>
     );
 }

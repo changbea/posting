@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import Navigate from '../Navigate';
 
+
 function Display() {
     const [stop, setStop] = useState(false);
+    setInterval
 }
 
 function Compete(props) {
@@ -41,7 +43,22 @@ function Compete(props) {
     }
 }
 
-export default function Gamersp() {
+
+function Mimic() {
+    const num = 5;
+    const selection = []
+    const [stage, setStage] = useState(1);
+    for (let count = 0; count < num**2; count++) {
+      selection.push(<button>&#127760;</button>)
+      if ((count+1) % num === 0){
+        selection.push(<br />)
+      }
+    }
+    
+    return (selection)
+}
+  
+export default function Gamerspextended() {
     function newChoice() {
         window.location.reload(false);
     }
@@ -61,6 +78,8 @@ export default function Gamersp() {
             <div className='reload'>
                <button  onClick ={ newChoice }>reload</button>
             </div>
+            <br />
+            <Mimic />
         </div>
       </main>
     );
