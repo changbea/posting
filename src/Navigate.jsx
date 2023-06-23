@@ -19,7 +19,7 @@ export default function Navigate() {
             <Link to="/gamesrspextended">Gamesrspextended&emsp;</Link>
             <Link to="/gamefinding">Gamefinding&emsp;</Link>
             <Link to="/gameflipping">Gameflipping&emsp;</Link>
-            {/* <Link to="/gamehint">Gamehint&emsp;</Link> */}
+            <Link to="/gamehint">Gamehint&emsp;</Link>
         </div>
     );      
 }
