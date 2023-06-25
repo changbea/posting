@@ -5,7 +5,7 @@ import './Navigate.css'
 export default function Navigate() {
     return (
         <div className='nav'>
-            <Link to="/">
+            <Link to="/newpage/">
                 <img src={logo} alt='react' width='5%' height='5%' />
             </Link>
             <br />
@@ -20,6 +20,7 @@ export default function Navigate() {
             <Link to="/newpage/gamefinding">Gamefinding&emsp;</Link>
             <Link to="/newpage/gameflipping">Gameflipping&emsp;</Link>
             <Link to="/newpage/gamehint">Gamehint&emsp;</Link>
+            <Link to="/newpage/planning">Planning&emsp;</Link>
         </div>
     );      
 }

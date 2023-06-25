@@ -13,6 +13,7 @@ import Gamesrspextended from './components/Gamesrspextended';
 import Gamefinding from './components/Gamefinding';
 import Gameflipping from './components/Gameflipping';
 import Gamehint from './components/Gamehint';
+import Planning from './components/Planning';
 
 export default function App() {
   return (
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="/newpage/gamefinding" element = { <Gamefinding /> } />
           <Route path="/newpage/gameflipping" element = { <Gameflipping /> } />
           <Route path="/newpage/gamehint" element = { <Gamehint /> } />
+          <Route path="/newpage/planning" element = { <Planning /> } />
         </Routes>
       </BrowserRouter>
     </div>
