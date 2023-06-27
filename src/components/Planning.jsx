@@ -89,7 +89,6 @@ function Hint() {
     </div>
     num = 0;
     setClear(clear+1);
-    console.log('num')
   } 
   else {
     tmp.push(
