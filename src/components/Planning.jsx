@@ -55,7 +55,7 @@ function Hint() {
           <span>&emsp;</span>
         </div>
       )
-      console.log('clear')
+      // console.log('clear')
       // isEditing = false;
     }
   }
