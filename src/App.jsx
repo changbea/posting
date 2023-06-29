@@ -24,15 +24,15 @@ export default function App() {
           <Route path="/midpage/drink" element = { <Drink /> } />
           <Route path="/midpage/subway" element = { <Subway /> } />
           <Route path="/midpage/cards" element = { <Cards /> } />
-          <Route path="/newpage/recommendations" element = { <Page /> } />
-          <Route path="/newpage/resume" element = { <Resume /> } />
-          <Route path="/newpage/leagues" element = { <League/> } />
-          <Route path="/newpage/gamersp" element = { <Gamersp /> } />
-          <Route path="/newpage/gamesrspextended" element = { <Gamesrspextended /> } />
-          <Route path="/newpage/gamefinding" element = { <Gamefinding /> } />
-          <Route path="/newpage/gameflipping" element = { <Gameflipping /> } />
-          <Route path="/newpage/gamehint" element = { <Gamehint /> } />
-          <Route path="/newpage/planning" element = { <Planning /> } />
+          <Route path="/midpage/recommendations" element = { <Page /> } />
+          <Route path="/midpage/resume" element = { <Resume /> } />
+          <Route path="/midpage/leagues" element = { <League/> } />
+          <Route path="/midpage/gamersp" element = { <Gamersp /> } />
+          <Route path="/midpage/gamesrspextended" element = { <Gamesrspextended /> } />
+          <Route path="/midpage/gamefinding" element = { <Gamefinding /> } />
+          <Route path="/midpage/gameflipping" element = { <Gameflipping /> } />
+          <Route path="/midpage/gamehint" element = { <Gamehint /> } />
+          <Route path="/midpage/planning" element = { <Planning /> } />
         </Routes>
       </BrowserRouter>
     </div>
