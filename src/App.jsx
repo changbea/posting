@@ -20,10 +20,10 @@ export default function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/newpage/" element={ <Heading /> } />
-          <Route path="/newpage/drink" element = { <Drink /> } />
-          <Route path="/newpage/subway" element = { <Subway /> } />
-          <Route path="/newpage/cards" element = { <Cards /> } />
+          <Route path="/midpage/" element={ <Heading /> } />
+          <Route path="/midpage/drink" element = { <Drink /> } />
+          <Route path="/midpage/subway" element = { <Subway /> } />
+          <Route path="/midpage/cards" element = { <Cards /> } />
           <Route path="/newpage/recommendations" element = { <Page /> } />
           <Route path="/newpage/resume" element = { <Resume /> } />
           <Route path="/newpage/leagues" element = { <League/> } />

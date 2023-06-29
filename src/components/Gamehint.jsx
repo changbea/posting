@@ -4,9 +4,6 @@ import './Gameflipping.css';
 
 const hidden = [];
 let count;
-// let ball = 0;
-// let strike = 0;
-// const guess = [1, 3, 5];
 let num = [];
 const tmp = [];
 const different = [];
