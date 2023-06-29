@@ -2,124 +2,198 @@ import Navigate from '../Navigate';
 import { useState, useEffect } from 'react';
 // import './Planning.css';
 
-const hidden = [];
+// let count;
+let num;
+let valueobject = {value: false, done: false};
+let valuetmpobject = {value: false, done: false};
+let cleartmp = [];
+let done = [];
 let count;
-// let ball = 0;
-// let strike = 0;
-// const guess = [1, 3, 5];
-// let num = [];
-let element = 0;
-const tmp = [];
-let num = 0;
-let value = false;
-let valuetmp = false;
-let isEditing = [];
+let decide = [];
 
+function Decision(element) {
+  if (decide[0] === element) {
+    decide = [];
+  } else {
+    decide = [];
+    decide.push(element);  
+  }
+}
+
+function Removing(element) {
+  count = [];
+  for (num in cleartmp) {
+    if (num !== element) {
+      count.push(cleartmp[num]);
+    }
+  }
+  cleartmp = count;
+}
 
 function Hint() {
   const [clear, setClear] = useState(0);
-  const [guess, setGuess] = useState(0);
-  // const [display, setDisplay] = useState(0);
-  // const [strike, setStrike] = useState(0);
-  // const [ball, setBall] = useState(0);
-  // if (num !== []) {
-  //   num = [];
-  //   console.log('number')
-  // }
-  // num = [];
+  const [guess, setGuess] = useState(false);
+  // const [count, setCount] = useState(false);
+
   const show = [];
-  let ball = 0;
-  let strike = 0;
+  const doneshow = [];
+
   show.push(
-    <div className='text-bg-info p-5'>
-      <input className='form-control' type='text' placeholder='enter tasks' onKeyDown={(input) => {if (input.key === 'Enter') {onClick()}}} onChange={(input) => Guess(input)}/>
+    <div className='text-bg-info pt-5'>
+      <input className='p-5' type='text' placeholder='enter tasks' onKeyDown={(input) => {if (input.key === 'Enter') {onClick()}}} onChange={(input) => Guess(input)}/>
       <span>&emsp;</span>
       <button className='btn btn-primary' onClick={() => onClick()}>add</button>
       <span>&emsp;</span>
+      <div>not yet</div>
     </div>
   )
+  doneshow.push(
+    <div className='text-bg-info'>done</div>
+  )
+  // for (count = 0; count < tmp.length; count++) {
+  //   show.push(tmp[count])
+  // }
 
-  for (count = 0; count < element; count++) {
-    show.push(tmp[count])
-    if (isEditing[0] === count) {
+  for (let element in cleartmp) {
+    if (done[element] === false) {  
       show.push(
-        <div>
-          <input className='form-control' type='text' placeholder='enter tasks' onKeyDown={(input) => {if (input.key === 'Enter') {onClick()}}} onChange={(input) => onGuess(input)}/>
-          <span>&emsp;</span>
-          <button className='btn btn-warning' onClick={() => {
-            num = 1;
-            onClick();
+        <div className='text-bg-info'>
+        <button className='container btn btn-secondary' onClick={
+          () => {
+            Decision(element);
+            setGuess(cleartmp[element])
             setClear(clear+1);
-            // console.log(count);
-          }}>add</button>
-          <span>&emsp;</span>
-        </div>
+          }
+        }>{cleartmp[element]}</button>
+        <button className='btn btn-success' onClick={() => {
+          Pairing(element)
+          setClear(clear+1);  
+        }}>not yet</button>
+        <button className='btn btn-warning' onClick={() => {
+          Removing(element)
+          setClear(clear+1);
+        }}>remove</button>
+      </div>
       )
-      // console.log('clear')
-      // isEditing = false;
+    } else {
+      doneshow.push(
+        <div className='text-bg-info'>
+        <button className='container btn btn-secondary' onClick={
+          () => {
+            Decision(element);
+            setGuess(cleartmp[element])
+            setClear(clear+1);
+          }
+        }>{cleartmp[element]}</button>
+        <button className='btn btn-success' onClick={() => {
+          Pairing(element)
+          setClear(clear+1);
+        }}>done</button>
+        <button className='btn btn-warning' onClick={() => {
+          Removing(element)
+          setClear(clear+1);
+        }}>remove</button>
+      </div>
+      )
     }
+
+    // valuetmpobject.value = valueobject.value;
+    valuetmpobject.value = guess;
+    
+      // console.log(decide[0]);
+      if (decide[0] === element) {
+        if (done[element] === false) {
+        show.push(
+          <div className='text-bg-info'>
+        <input className='p-5 container' type='text' placeholder='enter tasks' value={guess} onKeyDown={(input) => {if (input.key === 'Enter') {
+          if (valuetmpobject.value !== '') {
+            cleartmp[element] = valuetmpobject.value
+            decide = [];
+            valuetmpobject.value = false;
+            setClear(clear+1)
+          } else{alert('need to enter tasks')}
+        }}} onChange={(input) => Guesstmp(input)}/>
+        <button className='btn btn-primary container' onClick={() => {
+          if (valuetmpobject.value !== '') {
+            cleartmp[element] = valuetmpobject.value
+            decide = [];
+            valuetmpobject.value = false;
+            setClear(clear+1);
+          } else{alert('need to enter tasks')}
+        }}>add</button>
+          </div>
+        );
+        } else {
+          doneshow.push(
+            <div className='text-bg-info'>
+          <input className='p-5 container' type='text' placeholder='enter tasks' value={guess} onKeyDown={(input) => {if (input.key === 'Enter') {
+            if (valuetmpobject.value !== '') {
+              cleartmp[element] = valuetmpobject.value
+              decide = [];
+              valuetmpobject.value = false;
+              setClear(clear+1)
+            } else{alert('need to enter tasks')}
+          }}} onChange={(input) => Guesstmp(input)}/>
+          <button className='btn btn-primary container' onClick={() => {
+            if (valuetmpobject.value !== '') {
+              cleartmp[element] = valuetmpobject.value
+              decide = [];
+              valuetmpobject.value = false;
+              setClear(clear+1);
+            } else{alert('need to enter tasks')}
+          }}>add</button>
+            </div>
+          );
+        }
+      }
   }
 
   function Guess(set) {
-    value = set.target.value;
+    valueobject.value = set.target.value;
   }
 
-  function onGuess(set) {
-    valuetmp = set.target.value;
+  function Guesstmp(set) {
+    valuetmpobject.value = set.target.value;
+    setGuess(valuetmpobject.value);
   }
 
   function onClick() {
-    function Editing(element) {
-      isEditing = [element];
-      console.log(isEditing);
-      setClear(clear+1);
-    }
-    if (num === 1) {
-      tmp[element] = <div className='container btn btn-info'>
-    <button className='container btn btn-success' onClick={() => {
-      Editing(guess)
-    }}>{value}</button>
-    <div className='form-check'>
-      <input className='form-check-input' type='checkbox' />
-      <span className='form-check-label'>done</span>
-    </div>
-    <button className='btn btn-warning' onClick={({value}) => {
-      Removing({value})
-    }}>remove</button>
-    </div>
-    num = 0;
-    setClear(clear+1);
-  } 
-  else {
-    tmp.push(
-      <div className='container btn btn-info'>
-          <button className='container btn btn-success' onClick={() => {
-            Editing(guess)
-            setClear(clear+1);
-          }}>{value}</button>
-          <div className='form-check'>
-            <input className='form-check-input' type='checkbox' />
-            <span className='form-check-label'>done</span>
-          </div>
-          <button className='btn btn-warning' onClick={({value}) => {
-            Removing({value})
-          }}>remove</button>
-        </div>
-    )
-  }
-    setGuess(guess+1);
-    element++;
-  }
+    if (valueobject.value !== false && valueobject.value !== '') {
+      setClear(clear+1)
+      cleartmp = [...cleartmp, valueobject.value];
+      done.push(valueobject.done);
+    } else{alert('need to enter tasks')}
+  // function Removing(value) {
+  //   tmp.filter((values) => values !== value);
+  //   console.log(tmp[0])
+  //   setClear(clear.filter((values) => values !== value));
+  //   cleartmp.filter((values) => values !== value);
+  //   console.log(clear)
+  // }
+}
+
+function Pairing(element) {
+  done[element] = !done[element];
+  // count = [];
+  // for (num in done) {
+  //   if (num !== element) {
+  //     count.push(done[num]);
+  //   }
+  // }
+  
+  // done = count;
+}
 
   return (
     <div>
       {show}
+      {doneshow}
       <button onClick={() => window.location.reload(false)}>refresh</button>
     </div>
   );
 }
 
-export default function Planning() {
+export default function Plans() {
   return (
     <div>
       <Navigate />
