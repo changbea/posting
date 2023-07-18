@@ -9,11 +9,14 @@ a{
     font-weight: 600;
 }
 a:hover{
-    text-decoration-line: underline;
-    text-transform: lowercase;
+    /* text-decoration-line: underline; */
+    /* text-transform: lowercase; */
     color: green;    
 }
-
+.d-inline-block {
+    height: 50px;
+    overflow-x: hidden;
+}
 /* .nav {
     z-index: 1;
     position: fixed;

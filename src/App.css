@@ -1,4 +1,4 @@
-* {
+*:hover {
   outline: 1px dashed blue;
   /*text-align: center;*/
 }
