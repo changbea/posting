@@ -1,6 +1,7 @@
 import Navigate from '../Navigate';
-import './Gamersp.css';
+import './Survival.css';
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const number = Math.random();
 const choices = ['r', 's', 'p'];
@@ -117,6 +118,7 @@ function Menu() {
       <button onClick={() => setClear(!clear)}>menu</button>
       <div className = 'menu' ref = {btnRef}>
         <p>About</p>
+        <Link to='/multiple'>Multiple</Link>
       </div>
     </div>
   )
@@ -207,6 +209,14 @@ export default function Gamersp() {
     </div>
     <br />
     <button className='btn-success'>btn</button>
+    <br />
+    <Link to='/speed'>speed</Link>
+    <br />
+    <Link to='/survival'>survival</Link>
+    <br />
+    <Link to='/speed'>choose</Link>
+    <br />
+    <Link to='/speed'>change</Link>
     </div>
       </main>
     );

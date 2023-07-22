@@ -1,21 +1,22 @@
 Link {
-    color: yellowgreen;
+    color: slategray;
 }
 
 a{
     text-decoration: none;
-    color: yellowgreen;
+    color: slategray;
     text-transform: uppercase;
     font-weight: 600;
 }
 a:hover{
     /* text-decoration-line: underline; */
     /* text-transform: lowercase; */
-    color: green;    
+    color: black;    
 }
-.d-inline-block {
-    height: 50px;
-    overflow-x: hidden;
+.navigate {
+    display: flex;
+    height: 25px;
+    overflow: hidden;
 }
 /* .nav {
     z-index: 1;

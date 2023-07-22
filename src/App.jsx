@@ -14,6 +14,9 @@ import Gameflipping from './components/Gameflipping';
 import Gamemimic from './components/Gamemimic';
 import Gameguessing from './components/Gameguessing';
 import Plans from './components/Plans';
+import Speed from './components/Speed';
+import Survival from './components/Survival';
+import Pokedex from './components/Pokedex';
 
 export default function App() {
   return (
@@ -34,6 +37,9 @@ export default function App() {
           <Route path="/cf/mimic" element = { <Gamemimic /> } />
           <Route path="/cf/guessing" element = { <Gameguessing /> } />
           <Route path="/cf/plans" element = { <Plans /> } />
+          <Route path="/speed" element = { <Speed /> } />
+          <Route path="/survival" element = { <Survival /> } />
+          <Route path="/cf/pokedex" element = { <Pokedex /> } />
         </Routes>
       </BrowserRouter>
     </div>
