@@ -16,6 +16,7 @@ collection.push(
 </div>
 )
 export default function Pokecards() {
+  const [count, setCount] = useState(0);
   const cards = document.querySelectorAll(".isvisible");
 function isElementInViewport(el) {
   const rect = el.getBoundingClientRect();
@@ -34,8 +35,13 @@ function isCardVisible() {
       ? card.className='cardisvisible'
       : card.className='isvisible';
   }
+  setCount(count+1);
 }
-
+// useEffect(() => {
+//   document.addEventListener("DOMContentLoaded", isCardVisible);
+//   window.addEventListener("scroll", isCardVisible);
+//   window.addEventListener("resize", isCardVisible);
+// })
 document.addEventListener("DOMContentLoaded", isCardVisible);
 window.addEventListener("scroll", isCardVisible);
 window.addEventListener("resize", isCardVisible);
