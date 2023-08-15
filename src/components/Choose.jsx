@@ -344,113 +344,125 @@ function calculateTotalAmount() {
     // Loadcards();
   });
 
-export default function Change() {
-  let decision = null;
-  let opponent;
-  let occupation;
-  let clear = false;
-  let chance = {
-    started: false,
-    state: 'continuing'
-  };
-  const options = ['r', 's', 'p'];
-  const optionsSpan = [
-    '<span>&#9994;</span>',
-    '<span>&#9996;</span>',
-    '<span>&#9995;</span>'
-  ]
-  function selection(element) {
-    decision = element;
-    opponent = Math.floor(Math.random()*3);
-    if (decision === 'r') {
-        document.getElementById('option').innerHTML = optionsSpan[options.indexOf(decision)];
-    } else if (decision === 's') {
-        document.getElementById('option').innerHTML = optionsSpan[options.indexOf(decision)];
+export default function Choose() {
+  const selected = {first: null, second: null, decision: null};
+  const options = [
+    `<span>&#9994;</span>`,
+    `<span>&#9996;</span>`,
+    `<span>&#9995;</span>`
+  ];
+  
+  function selection(option, order) {
+    if (order === 'first') {
+      if (option === 'r') {
+        document.getElementById('optionFirst').innerHTML = options[0];
+      } else if (option === 's') {
+        document.getElementById('optionFirst').innerHTML = options[1];
+      } else {
+        document.getElementById('optionFirst').innerHTML = options[2];
+      }
+      selected.first = option;
     } else {
-        document.getElementById('option').innerHTML = optionsSpan[options.indexOf(decision)];
+      if (option === 'r') {
+        document.getElementById('optionSecond').innerHTML = options[0];
+      } else if (option === 's') {
+        document.getElementById('optionSecond').innerHTML = options[1];
+      } else {
+        document.getElementById('optionSecond').innerHTML = options[2];
+      }
+      selected.second = option;
     }
   }
-  function onClick() {
-    if (decision !== null && clear === false) {
-        if (opponent === 0) {
-            document.getElementById('opponent').innerHTML = optionsSpan[opponent];
-        } else if (opponent === 1) {
-            document.getElementById('opponent').innerHTML = optionsSpan[opponent];
+  const opponentOptions = [];
+  function compete(element) {
+    if (element.length === 0) {
+      if (selected.first !== null && selected.second !== null) {
+        opponentOptions.push(Math.floor(Math.random()*3));
+        opponentOptions.push(Math.floor(Math.random()*3));
+        if (opponentOptions[0] === 0) {
+          document.getElementById('opponentFirst').innerHTML = options[0];
+          opponentOptions[0] = 'r'
+        } else if (opponentOptions[0] === 1) {
+          document.getElementById('opponentFirst').innerHTML = options[1];
+          opponentOptions[0] = 's'
         } else {
-            document.getElementById('opponent').innerHTML = optionsSpan[opponent];
+          document.getElementById('opponentFirst').innerHTML = options[2];
+          opponentOptions[0] = 'p'
         }
-        if (decision === 'r') {
-            if (opponent === 0) {
-              if (chance.started === false) {
-                document.getElementById('result').innerHTML = 'Draw';
-              } else {
-                if (occupation === true) {
-                  document.getElementById('result').innerHTML = 'Win';
-                } else {
-                  document.getElementById('result').innerHTML = 'Lose';
-                }
-              }
-            } else if (opponent === 1) {
-              if (chance.started === false) {
-                chance.started = true;
-              }
-              occupation = true;
-              document.getElementById('result').innerHTML = 'My chance';
-            } else {
-              if (chance.started === false) {
-                chance.started = true;
-              }
-              occupation = false;
-              document.getElementById('result').innerHTML = 'Opponent has a chance';
-            }
-        } else if (decision === 's') {
-            if (opponent === 0) {
-              if (chance.started === false) {
-                chance.started = true;
-              }
-              document.getElementById('result').innerHTML = 'Opponent has a chance';
-            } else if (opponent === 1) {
-              if (chance.started === false) {
-                document.getElementById('result').innerHTML = 'Draw';
-              } else {
-                if (occupation === true) {
-                  document.getElementById('result').innerHTML = 'Win';
-                } else {
-                  document.getElementById('result').innerHTML = 'Lose';
-                }
-              }
-            } else {
-              if (chance.started === false) {
-                chance.started = true;
-              }
-              document.getElementById('result').innerHTML = 'My chance';
-            }
+        if (opponentOptions[1] === 0) {
+          document.getElementById('opponentSecond').innerHTML = options[0];
+          opponentOptions[1] = 'r'
+        } else if (opponentOptions[1] === 1) {
+          document.getElementById('opponentSecond').innerHTML = options[1];
+          opponentOptions[1] = 's'
         } else {
-            if (opponent === 0) {
-              if (chance.started === false) {
-                chance.started = true;
-              }
-              document.getElementById('result').innerHTML = 'My chance';
-            } else if (opponent === 1) {
-              if (chance.started === false) {
-                chance.started = true;
-              }
-              document.getElementById('result').innerHTML = 'Opponent has a chance';
-            } else {
-              if (chance.started === false) {
-                document.getElementById('result').innerHTML = 'Draw';
-              } else {
-                if (occupation === true) {
-                  document.getElementById('result').innerHTML = 'Win';
-                } else {
-                  document.getElementById('result').innerHTML = 'Lose';
-                }
-              }
-            }
+          document.getElementById('opponentSecond').innerHTML = options[2];
+          opponentOptions[1] = 'p'
         }
+      } else {
+        alert('need to select from options')
+      }
+    } else {
+      if (selected.decision !== null) {
+        if (selected.decision === 'r') {
+          document.getElementById('optionDecision').innerHTML = 'Chose ' + options[0];
+        } else if (selected.decision === 's') {
+          document.getElementById('optionDecision').innerHTML = 'Chose ' + options[1];
+        } else {
+          document.getElementById('optionDecision').innerHTML = 'Chose ' + options[2];
+        }
+        let opponentOption = Math.floor(Math.random());
+        let competition;
+        if (opponentOption < 0.5) {
+          opponentOptions.push(opponentOptions[0]);
+        } else {
+          opponentOptions.push(opponentOptions[1]);
+        }
+        if (opponentOptions[2] === 'r') {
+          if (selected.decision === 'r') {
+            competition = 'draw';
+          } else if (selected.decision === 's') {
+            competition = 'lose';
+          } else {
+            competition = 'win';
+          }
+          document.getElementById('opponentDecision').innerHTML = 'Opponent chose ' + options[0];
+          document.getElementById('guess').innerHTML = 'Result: ' + competition
+        } else if (opponentOptions[2] === 's') {
+          if (selected.decision === 'r') {
+            competition = 'win';
+          } else if (selected.decision === 's') {
+            competition = 'draw';
+          } else {
+            competition = 'lose';
+          }
+          document.getElementById('opponentDecision').innerHTML = 'Opponent chose ' + options[1];
+          document.getElementById('guess').innerHTML = 'Result: '
+        } else {
+          if (selected.decision === 'r') {
+            competition = 'lose';
+          } else if (selected.decision === 's') {
+            competition = 'win';
+          } else {
+            competition = 'draw';
+          }
+          document.getElementById('opponentDecision').innerHTML = 'Opponent chose ' + options[2];
+          document.getElementById('guess').innerHTML = 'Result: '
+        }
+      } else {
+        alert('need to select from options')
+      }
     }
   }
-
+  function decide(order) {
+    if (selected.first !== null && selected.second !== null) {
+      if (order === 'first') {
+        selected.decision = selected.first;
+      } else {
+        selected.decision = selected.second;
+      }
+    }
+  }
   return (
     <main>
       <Navigate />
@@ -503,30 +515,7 @@ export default function Change() {
       <p>total purchase price: <strong id="realTotal"></strong></p>
     </div>
     </div> */}
-    <div>Change</div>
-    <div>
-        Opponent chose
-        <div id='opponent'>
-            <br />
-        </div>
-    </div>
-    <div>
-        Options
-        <br />
-        <span onClick={() => selection('r')}>&#9994;</span>
-        <span onClick={() => selection('s')}>&#9996;</span>
-        <span onClick={() => selection('p')}>&#9995;</span>
-        <br />
-    </div>
-    <div>
-        Chose
-        <div id='option'></div>
-    </div>
-    <div id='result'>
-        <br />
-    </div>
-    <button onClick={onClick}>ready</button>
-    {/* <div className="h3 p-5 text-center centered">Choose</div>
+    <div className="h3 p-5 text-center centered">Choose</div>
       <div className='option'>
         <div>
           Opponent's Option First
@@ -577,7 +566,7 @@ export default function Change() {
         <br />
       </div>
       <div className='btn btn-primary' onClick={() => compete(opponentOptions)}>ready</div>
-      <div id='guess'></div> */}
+      <div id='guess'></div>
     </main>
   );
 }

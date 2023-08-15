@@ -6,7 +6,10 @@ const players = [];
 const opponents = [];
 let competition;
 let num;
-for (num = 0; num < 5; num++) {
+let process = 0;
+let count = 5;
+
+for (num = 0; num < count; num++) {
   players.push({
     show: 'hidden',
     decision: 'x',
@@ -31,19 +34,21 @@ export default function Survival() {
   const collection = [];
   let number;
 
-  for (num = 1; num < 5; num++) {
-    number = Math.random()*3;
-    if (number < 1) {
-      players[num].decision = 'r';
-    } else if (number >= 1 && number < 2) {
-      players[num].decision = 's';
-    } else {
-      players[num].decision = 'p';
+  for (num = 1; num < count; num++) {
+    if (players[num].state === true) {
+      number = Math.random()*3;
+      if (number < 1) {
+        players[num].decision = 'r';
+      } else if (number >= 1 && number < 2) {
+        players[num].decision = 's';
+      } else {
+        players[num].decision = 'p';
+      }
     }
   }
   
   function Compete(decide) {
-    if (clear === false) {
+    if (clear === false && players[0].state === true) {
       if (decide === 'r') {
         document.getElementById("decide").innerHTML = decision[0];
       } else if (decide === 's') {
@@ -53,36 +58,65 @@ export default function Survival() {
       }
       collection.push(decide);
 
-      for (num = 1; num < 5; num++) {
-        if (players[num].decision === 'r') {
-          document.getElementById(`player${num}`).innerHTML = decision[0];
-        } else if (players[num].decision === 's') {
-          document.getElementById(`player${num}`).innerHTML = decision[1];
+      for (num = 1; num < count; num++) {
+        if (players[num].state === true) {
+          if (players[num].decision === 'r') {
+            document.getElementById(`player${num}`).innerHTML = decision[0];
+          } else if (players[num].decision === 's') {
+            document.getElementById(`player${num}`).innerHTML = decision[1];
+          } else {
+            document.getElementById(`player${num}`).innerHTML = decision[2];
+          }
+          collection.push(players[num].decision);
         } else {
-          document.getElementById(`player${num}`).innerHTML = decision[2];
+          collection.push('out');
         }
-        collection.push(players[num].decision);
       }
 
-      if (collection.indexOf('r') !== -1 && collection.indexOf('s') !== -1) {
-        if (collection.indexOf('p') !== -1 ) {
-          competition = 'draw'
-        } 
-        else {
-          competition = 'win'
+      if (collection[0] === 'r') {
+        if (collection.indexOf('s') !== -1 && collection.indexOf('p') !== -1) {
+          competition = 'draw';
+        } else if (collection.indexOf('s') === -1 && collection.indexOf('p') === -1) {
+          competition = 'draw';
+        }
+        else if(collection.indexOf('s') !== -1) {
+          competition = 'win';
+          for (num = 1; num < count; num++) {
+            if (collection[num] === 's') {  
+              players[num].state = false;
+              process++;
+            }
+          }
+          if (process === count-1) {
+            players[0].state = false;
+          }
+        } else {
+          competition = 'lose';
+          players[0].state = false;
         }
       }
+
+      // if (collection.indexOf('r') !== -1 && collection.indexOf('s') !== -1) {
+      //   if (collection.indexOf('p') !== -1 ) {
+      //     competition = 'draw'
+      //   } 
+      //   else {
+      //     competition = 'win'
+      //   }
+      // }
       setClear(true);
     }
   }
   
   function Round() {
-    if (clear === true) {
+    if (clear === true && players[0].state === true) {
       setClear(false);
       setStage(stage+1);
-      for (num = 1; num < 5; num++) {
+      for (num = 1; num < count; num++) {
         if (players[num].state === true) { 
           document.getElementById(`player${num}`).innerHTML = 'hidden';
+        } else {
+          document.getElementById(`player${num}`).innerHTML = 'out';
         }
       }
       document.getElementById("decide").innerHTML = '<br />'
@@ -90,9 +124,27 @@ export default function Survival() {
     }
   }
 
-  if (clear === 1) {
-    
-  }
+  // if (clear === 1) {
+  //   if (collection[0] === 'r') {
+  //     if (collection.indexOf('s') !== -1 && collection.indexOf('p') !== -1) {
+  //       competition = 'draw';
+  //     } 
+  //     else if (collection.indexOf('s') !== -1) {
+  //       for (num = 1; num < 5; num++) {
+  //         if (collection[num] === 's') {
+  //           players[num].state = false;
+  //           players[num].decision = 'x';
+  //           competition = 'win';
+  //         }
+  //       }
+  //     } 
+  //     else {
+  //       // console.log('count')
+  //       players[0].state = false;
+  //       competition = 'lose';
+  //     }
+  //   }
+  // }
   
     return (
       <main>
@@ -141,6 +193,8 @@ export default function Survival() {
             </div>
             <div id='result'>Result: {competition}</div>
             <button onClick={Round}>next round</button>
+            <br />
+            <button onClick={() => window.location.reload(false)}>reload</button>
           </div>
         </div>
         {/* <Menu />

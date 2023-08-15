@@ -214,9 +214,9 @@ export default function Gamersp() {
     <br />
     <Link to='/survival'>survival</Link>
     <br />
-    <Link to='/speed'>choose</Link>
+    <Link to='/choose'>choose</Link>
     <br />
-    <Link to='/speed'>change</Link>
+    <Link to='/cards'>change</Link>
     </div>
       </main>
     );

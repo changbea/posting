@@ -1,3 +1,7 @@
+.menusNav {
+    border: dashed;
+    width: 20%;
+}
 .centered {
     animation: fadeInAnimation ease 3s;
     animation-iteration-count: 1;

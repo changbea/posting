@@ -104,6 +104,19 @@ export default function Currentfocus() {
               </div>
             </Link>
           </div>
+          <div className='button p-5'>
+            <Link to='pokecards' className='btn btn-outline-secondary'>
+              <div className='buttonSvg'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal" viewBox="0 0 16 16">
+                  <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                  <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+                </svg>
+              </div>
+              <div className='buttonName'>
+                Pokecards
+              </div>
+            </Link>
+          </div>
         </div>
         <div className='h5 p-5 text-center centered'>
           Plans
@@ -119,6 +132,44 @@ export default function Currentfocus() {
                 </div>
                 <div className='buttonName'>
                   Planning
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className='h5 p-5 text-center centered'>
+          Ranks
+        </div>
+        <div className='items text-center centered'>
+          <div className='text-centered centered'>
+            <div className='button p-5'>
+              <Link to='plans' className='btn btn-outline-secondary'>
+                <div className='buttonSvg'>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-collection" viewBox="0 0 16 16">
+                    <path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"/>
+                  </svg>
+                </div>
+                <div className='buttonName'>
+                  Recommend
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className='h5 p-5 text-center centered'>
+          Messaging
+        </div>
+        <div className='items text-center centered'>
+          <div className='text-centered centered'>
+            <div className='button p-5'>
+              <Link to='plans' className='btn btn-outline-secondary'>
+                <div className='buttonSvg'>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-collection" viewBox="0 0 16 16">
+                    <path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"/>
+                  </svg>
+                </div>
+                <div className='buttonName'>
+                  Messages
                 </div>
               </Link>
             </div>

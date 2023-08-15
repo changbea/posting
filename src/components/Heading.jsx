@@ -10,6 +10,23 @@ export default function Heading() {
           <p className='centered'>Template by me</p>
           <button>Get Started</button>
         </div>
+        <div>
+          <div className='menusNav'>
+            &#127760;
+            <br />
+            navigate
+          </div>
+          <div className='menusNav'>
+            &#127760;
+            <br />
+            navigate
+          </div>
+          <div className='menusNav'>
+            &#127760;
+            <br />
+            navigate
+          </div>
+        </div>
       </div>
     );
 }
