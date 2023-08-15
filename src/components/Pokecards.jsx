@@ -9,6 +9,12 @@ collection.push(
     <h2 className="card-title">Pikachu</h2>
   </div>
 )
+collection.push(
+<div className="card">
+  <img className='isvisible' src="https://i.ibb.co/TkBFwhX/alakazam.png" />
+  <h2 className="card-title">Alakazam</h2>
+</div>
+)
 export default function Pokecards() {
   const cards = document.querySelectorAll(".isvisible");
 function isElementInViewport(el) {
@@ -46,10 +52,7 @@ window.addEventListener("resize", isCardVisible);
     <img className='isvisible' src="https://i.ibb.co/Wc7RLgG/pikachu.png" />
     <h2 className="card-title">Pikachu</h2>
   </div> */}
-  <div className="card">
-    <img className='isvisible' src="https://i.ibb.co/TkBFwhX/alakazam.png" />
-    <h2 className="card-title">Alakazam</h2>
-  </div>
+  
   <div className="card">
     <img className='isvisible' src="https://i.ibb.co/fXsLm23/arbok.png" />
     <h2 className="card-title">Arbok</h2>
