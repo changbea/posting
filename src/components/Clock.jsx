@@ -16,7 +16,6 @@ export default function Clock() {
   function onClick() {
     setStage(false);
   }
-  console.log(stage)
   return (
     <div className='centered'>
       <div>Record: {count} seconds</div>
