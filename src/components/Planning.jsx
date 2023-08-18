@@ -125,7 +125,7 @@ function Hint() {
         );
         } else {
           doneshow.push(
-            <div className='text-bg-info'>
+            <div className='tex-bg-info'>
           <input className='p-5 container' type='text' placeholder='enter tasks' value={guess} onKeyDown={(input) => {if (input.key === 'Enter') {
             if (valuetmpobject.value !== '') {
               cleartmp[element] = valuetmpobject.value

@@ -9,7 +9,6 @@ let card;
 export default function Pokedex() {
   function isElementInViewport(el) {
     const rect = el.getBoundingClientRect();
-    // console.log('count')
     return (
       rect.top >= 0 &&
       rect.left >= 0 &&
@@ -19,34 +18,37 @@ export default function Pokedex() {
     );
   }
 
-  function isCardVisible() {
-    cards = document.querySelectorAll(".card");
+  function isCardVisible(element) {
+    cards = document.querySelectorAll(".isvisible");
+    console.log(cards)
+    // isElementInViewport(cards)
+    // ? element.className = 'isvisible'
+    // : element.className = 'cardisvisible';
     for (card of cards) {
-      console.log(isElementInViewport(card))
-      setCount(count+1);
       isElementInViewport(card)
-      ? card.classList.add('isvisible')
-      : card.classList.remove("isvisible");
+      ? card.className = 'cardisvisible'
+      : card.className = 'isvisible';
     }
+    setCounter(counter+1);
   }
-
+  
   document.addEventListener("DOMContentLoaded", isCardVisible);
   window.addEventListener("scroll", isCardVisible);
   window.addEventListener("resize", isCardVisible);
   // const [currentMove, setCurrentMove] = useState(0);
   // const [isCount, setIscount] = useState(0);
   const [clear, setClear] = useState(null);
-  const [count, setCount] = useState(0);
+  const [counter, setCounter] = useState(0);
   
   async function searchPokemon(apiObj) {
     const pokedex = document.querySelector('.pokedex')
-    for (let number = 0; number < 897; number++) {
+    for (let number = 0; number < 9; number++) {
       const {url, type, name} = clearing[number]
       const clear = await fetch(
         `${url}${type}/${name}`
       )
       const raw_data = await clear.json()
-      change(raw_data)
+      change(raw_data, number)
       console.log(number);
       // fetch(clear)
       // .then( (raw_data) => raw_data.json())
@@ -56,6 +58,7 @@ export default function Pokedex() {
       //   '<h1> Some Error Occured.. Please revise your code!</h1>';
       // })
     }
+    // cards = document.querySelectorAll(".card");
     // pokedex.innerHTML = collection.join('')
     setClear(false);
     
@@ -85,8 +88,12 @@ export default function Pokedex() {
     // window.addEventListener("scroll", isCardVisible);
     // window.addEventListener("resize", isCardVisible);
   }
+  function handlescroll(element) {
+    setClear(element.currentTarget.clear)
+    console.log('clear')
+  }
   
-  function change(data) {
+  function change(data, number) {
     let new_stats = [];
     for (let count=0; count< data.stats.length; count++) {
       new_stats.push(<p>{data.stats[count].stat.name} has base-stat of <span>{data.stats[count].base_stat}</span></p>);
@@ -116,7 +123,7 @@ export default function Pokedex() {
       <div>
         <div align="center">
           <h1>{data.name}</h1>
-          <img className='card' src={data.sprites.other.dream_world.front_default? data.sprites.other.dream_world.front_default : data.sprites.front_default? data.sprites.front_default : 
+          <img className='isvisible' src={data.sprites.other.dream_world.front_default? data.sprites.other.dream_world.front_default : data.sprites.front_default? data.sprites.front_default : 
       "https://thumbs.dreamstime.com/b/no-pokemon-here-sign-riga-latvia-july-restricted-area-over-white-background-go-very-popular-virtual-74549871.jpg"} /> 
           <h3> weight: <span>{data.weight} hg </span> </h3>
           <h3> height: <span>{data.height} dm</span> </h3>
@@ -129,17 +136,18 @@ export default function Pokedex() {
       </div>
     )
     // collection.push(value)
-      // pokedex.innerHTML = value
+      // podex.innerHTML = value
       // input.value = ""; 
+    setCounter(counter+1);
     return collection
   }
   
   function inputLength() {
-    return input.value.length;
+    return inpuket.value.length;
   }
   
   function makeUrl() { //creates the URL using "value"
-    for (let number = 0; number < 897; number++) {  
+    for (let number = 0; number < 9; number++) {  
       const apiObj = {
           url: "https://pokeapi.co/api/v2/",
           type: "pokemon",
@@ -156,10 +164,10 @@ export default function Pokedex() {
   }
   
   function randomize() { 
-    const searchValue = getRandomInt(1,897); //gets random integer between min and max of Pokemon IDs
+    const searchValue = getRandomInt(1,9); //gets random integer between min and max of Pokemon IDs
     searchPokemon(makeUrl()); //uses gotten integer as Pokemon ID and search
-    console.log('count')
-    // setCount(count+1)
+    // console.log('count')
+    // setCounter(counter+1)
     setClear(false);
   }
   
@@ -214,3 +222,28 @@ export default function Pokedex() {
     </div>
   );
 }
+
+// const cards = document.querySelectorAll(".card");
+
+// function isElementInViewport(el) {
+//   const rect = el.getBoundingClientRect();
+//   return (
+//     rect.top >= 0 &&
+//     rect.left >= 0 &&
+//     rect.bottom <=
+//       (window.innerHeight || document.documentElement.clientHeight) &&
+//     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+//   );
+// }
+
+// function isCardVisible() {
+//   for (card of cards) {
+//     isElementInViewport(card)
+//       ? card.classList.add("isVisible")
+//       : card.classList.remove("isVisible");
+//   }
+// }
+
+// document.addEventListener("DOMContentLoaded", isCardVisible);
+// window.addEventListener("scroll", isCardVisible);
+// window.addEventListener("resize", isCardVisible);

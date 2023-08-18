@@ -14,6 +14,7 @@ import Gameflipping from './components/Gameflipping';
 import Gamemimic from './components/Gamemimic';
 import Gameguessing from './components/Gameguessing';
 import Plans from './components/Plans';
+import Clock from './components/Clock';
 import Speed from './components/Speed';
 import Survival from './components/Survival';
 import Choose from './components/Choose';
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/cf/mimic" element = { <Gamemimic /> } />
           <Route path="/cf/guessing" element = { <Gameguessing /> } />
           <Route path="/cf/plans" element = { <Plans /> } />
+          <Route path="/cf/clock" element = { <Clock /> } />
           <Route path="/speed" element = { <Speed /> } />
           <Route path="/survival" element = { <Survival /> } />
           <Route path="/choose" element = { <Choose /> } />

@@ -15,7 +15,7 @@
     transform: none;
     transition-delay: .1s;
 }    
-img {
+.isvisible {
     max-width: 70%;
     max-height: 50vh;
     opacity: 0;

@@ -88,11 +88,15 @@ export default function Clock() {
       return () => clearInterval(variableInterval);
     }
   })
-  
+  function onClick() {
+    setStage(10);
+  }
+  console.log(stage)
     return (
         <div className='centered'>
           <div>Record: {count} seconds</div>
           <br />
+          <button onClick={onClick}>record</button>
         </div>
     );
 }
