@@ -1,8 +1,4 @@
-*{
-  
-}
-
-*:hover {
-  outline: 1px dashed blue;
-  /*text-align: center;*/
+#root {
+  margin: 0 auto;
+  /* text-align: center; */
 }
