@@ -1,18 +1,18 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
 import './App.css'
-import { auth, onSocialClick } from './serverbase'
+import { auth, onSocialClick, dbservice, storage } from './serverbase'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import styled from 'styled-components'
 
 const NavBtn = styled.button`
   border: dashed;
 `
-const SignBtn = styled.div`
-  display: flex;
-  justify-content: center;
-`
+// const SignBtn = styled.div`
+//   display: flex;
+//   justify-content: center;
+// `
 
 function Auth() {
   const [email, setEmail] = useState('')
@@ -51,41 +51,20 @@ function Auth() {
   
   return (  
     <div>
-      <nav className='navbar'>
+      {/* <nav className='navbar'>
         <NavBtn className='navbar-toggler'>
           <span className='navbar-toggler-icon'></span>
         </NavBtn>
-      </nav>
-      {/* <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
-  <div className="container-fluid">
-    <a className="navbar-brand" href="#">Logo</a>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <a className="nav-link" href="#">Link</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">Link</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">Link</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav> */}
+      </nav> */}
       <form onSubmit={onSubmit}>
         <div className='d-flex'>
-          <label className='form-label'>Email:</label>
-          <span>&emsp;</span>
+          {/* <label className='form-label'>Email:</label>
+          <span>&emsp;</span> */}
           <input className='form-control' placeholder='Email' name='email' value={email} type='email' onChange={onChange} required/>
         </div>
         <div className='d-flex'>
-          <label className='form-label'>Password:</label>
-          <span>&emsp;</span>
+          {/* <label className='form-label'>Password:</label>
+          <span>&emsp;</span> */}
           <input className='form-control' placeholder='Password' name='password' value={password} type='password' onChange={onChange} required/>
         </div>
         <div className='d-flex'>
@@ -93,8 +72,10 @@ function Auth() {
           <span>{error}</span>
         </div>
       </form>
-      <button onClick={toggleAccount} className='btn btn-outline-danger'>{newAccount ? 'Sign Up' : 'Sign In'}</button>
-      <button className='btn btn-primary' onClick={onSocialClick}>Continue with Google</button>
+      <div className='d-flex flex-column'>
+        <button className='btn btn-primary' onClick={onSocialClick}>Continue with Google</button>
+        <button onClick={toggleAccount} className='btn btn-outline-danger'>{newAccount ? 'Sign Up' : 'Sign In'}</button>
+      </div>
     </div>
   )
 }

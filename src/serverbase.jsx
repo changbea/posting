@@ -1,5 +1,6 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
-import 'firebase/firestore'
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -19,6 +20,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const dbservice = getFirestore(app);
+const storage = getStorage();
 
 const onSocialClick = async (event) => {
     const {
@@ -46,4 +49,4 @@ const onSocialClick = async (event) => {
     });
 }
 
-export {auth, onSocialClick}
+export {auth, onSocialClick, dbservice, storage}
