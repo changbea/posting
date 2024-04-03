@@ -9,10 +9,10 @@ import styled from 'styled-components'
 const NavBtn = styled.button`
   border: dashed;
 `
-// const SignBtn = styled.div`
-//   display: flex;
-//   justify-content: center;
-// `
+const SignBtn = styled.div`
+  display: flex;
+  justify-content: center;
+`
 
 function Auth() {
   const [email, setEmail] = useState('')

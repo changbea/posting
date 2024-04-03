@@ -1,73 +1,63 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { collection, addDoc, getDocs, doc, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { ref, getDownloadURL, uploadBytes, deleteObject } from 'firebase/storage';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Auth from './Auth'
+import Message from './Message'
+import Add from './Add'
 import { auth, onSocialClick, dbservice, storage } from './serverbase'
 import { v4 as uuidv4 } from 'uuid';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
 function Home({ isLoggedIn, userObj }) {
+    const [borrow, setBorrow] = useState(true);
+    const [noticeBorrow, setNoticeBorrow] = useState(true);
     const [count, setCount] = useState('');
     const [counter, setCounter] = useState('');
-    const changeRoom = (event) => {
-        event.preventDefault()
-        const {
-            target: {value},
-        } = event;
-        if (value !== 'default') {
-            setCount(value);
-        }
-    }
-    const changeSeat = (event) => {
-        event.preventDefault()
-        const {
-            target: {value},
-        } = event;
-        if (value !== 'default') {
-            setCounter(value);
-        }
-    }
+    const [messages, setMessages] = useState([]);
     
-    const submit = async (event) => {
-        event.preventDefault()
-        if(count !== '' && counter !== '') {
-            await addDoc(collection(dbservice, 'num'), {
-                text: {count: count, counter: counter},
-                creatorClock: Date.now(),
-                creatorId: userObj.uid,
-            })
-        } else {
-            alert('Choose Number')
-        }
-    }
+    const noticeBorrowOnClick = (boolean) => setNoticeBorrow(boolean)
+    
+    useEffect(() => {
+        onSnapshot(query(collection(dbservice, 'num'), orderBy('creatorClock', 'desc')), (snapshot) => {
+            const newArray = snapshot.docs.map((document) => ({
+                id: document.id,
+                ...document.data(),
+            }));
+            setMessages(newArray)
+        })
+    })
 
     return (
-        <div>
-            <div className='d-flex router'>
-                <select form='selection' onChange={changeRoom}>
-                    <option value='default' disabled selected>study room number</option>
-                    <option value='one'>one</option>
-                    <option value='focus'>focus</option>
-                    <option value='two'>two</option>
-                    <option value='three'>three</option>
-                    <option value='four'>four</option>
-                </select>
-                
-                <form id='selection' onSubmit={submit}>
-                    {count === 'one' && <input className='input-group-text' onChange={changeSeat} placeholder='num' type="number" id='one' name='one' min="1" max="181"/>}
-                    {count === 'focus' && <input className='input-group-text' onChange={changeSeat} placeholder='num' type="number" id='focus' name='focus' min="1" max="46"/>}
-                    {count === 'two' && <input className='input-group-text' onChange={changeSeat} placeholder='num' type="number" id='two' name='two' min="1" max="315"/>}
-                    {count === 'three' && <input className='input-group-text' onChange={changeSeat} placeholder='num' type="number" id='three' name='three' min="1" max="156"/>}
-                    {count === 'four' && <input className='input-group-text' onChange={changeSeat} placeholder='num' type="number" id='four' name='four' min="1" max="149"/>}
-                    <input className='btn btn-primary' type='submit' value='submit'/>
-                </form>
+        <div className='d-flex flex-column'>
+            <div className='d-flex justify-content-center'>Welcome {userObj.displayName}</div>
+            <Add isLoggedIn={isLoggedIn} userObj={userObj}/>
+            <div>
+                <div className='d-flex justify-content-center'>Notice</div>
+                <div className='d-flex justify-content-center btn-group btn-group-toggle'>
+                    {noticeBorrow ?
+                        <div className='d-flex justify-content-center btn-group btn-group-toggle'>
+                            <button className='btn btn-outline-primary active' onClick={() => noticeBorrowOnClick(true)}>Someone wanting to Borrow</button>
+                            <button className='btn btn-outline-primary' onClick={() => noticeBorrowOnClick(false)}>Someone wanting to Lend</button>
+                        </div>
+                        :
+                        <div className='d-flex justify-content-center btn-group btn-group-toggle'>
+                            <button className='btn btn-outline-primary' onClick={() => noticeBorrowOnClick(true)}>Someone wanting to Borrow</button>  
+                            <button className='btn btn-outline-primary active' onClick={() => noticeBorrowOnClick(false)}>Someone wanting to Lend</button>  
+                        </div>
+                    }
+                </div>
+                {messages === [] ? <div>Not yet</div> : messages.map((msg) => <Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} />)}
             </div>
-            {/* <form>
-                <div>email</div>
-                <div>password</div>
-                <Link className='btn btn-primary' onClick={() => auth.signOut()}>Sign Out</Link>
-            </form> */}
+            {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DemoContainer components={['TimePicker']}>
+                    <TimePicker label="Basic time picker" />
+                </DemoContainer>
+            </LocalizationProvider> */}
         </div>
 
     )

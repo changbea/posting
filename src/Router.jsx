@@ -3,6 +3,7 @@ import 'firebase/firestore'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './Home'
 import Auth from './Auth'
+import Profile from './Profile'
 import Navigation from './Navigation'
 
 function Router({ isLoggedIn, userObj }) {
@@ -14,7 +15,7 @@ function Router({ isLoggedIn, userObj }) {
                     isLoggedIn ? (
                         <Route>
                             <Route exact path='/' Component={() => <Home isLoggedIn={isLoggedIn} userObj={userObj}/>}/>
-                            <Route exact path='/profile'/>
+                            <Route exact path='/profile' Component={() => <Profile userObj={userObj} />}/>
                         </Route>
                     ) : (
                         <Route>
