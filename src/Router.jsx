@@ -19,7 +19,7 @@ function Router({ isLoggedIn, userObj }) {
                         </Route>
                     ) : (
                         <Route>
-                            <Route path='/newbasing/' Component={Auth}/>
+                            <Route path='/newbasing/' element={Auth}/>
                         </Route>
                     )
                 }
