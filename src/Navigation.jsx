@@ -23,7 +23,7 @@ function Navigation({ isLoggedIn, userObj }) {
           {isLoggedIn && 
           <nav className="navigation">
             <h1 className='nav-padding'>
-              <Link to='/newbasing/newbasing' onClick={checkbox}>Home</Link>
+              <Link to='/newbasing/' onClick={checkbox}>Home</Link>
             </h1>
             <h1>
               <Link to='/newbasing/profile' onClick={checkbox}>{userObj.displayName}'s Profile</Link>
@@ -35,7 +35,7 @@ function Navigation({ isLoggedIn, userObj }) {
               <Link to="/newbasing/contact" onClick={checkbox}>Contact</Link>
             </h1>
             <h1>
-              <Link to="/newbasing/newbasing" onClick={() => {
+              <Link to="/newbasing/" onClick={() => {
                 onLogOutClick()
                 checkbox()
               }}>Logout</Link>
@@ -44,7 +44,7 @@ function Navigation({ isLoggedIn, userObj }) {
           {!isLoggedIn &&
             <nav className="navigation">
               <h1 className='nav-padding'>
-                <Link to='/newbasing/newbasing'>Sign In&Up</Link>
+                <Link to='/newbasing/'>Sign In&Up</Link>
               </h1>
               <h1>
                 <Link to="/newbasing/contact">Contact</Link>
