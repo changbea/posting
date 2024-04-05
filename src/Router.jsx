@@ -14,12 +14,12 @@ function Router({ isLoggedIn, userObj }) {
                 {
                     isLoggedIn ? (
                         <Route>
-                            <Route path='/newbasing' Component={() => <Home isLoggedIn={isLoggedIn} userObj={userObj}/>}/>
+                            <Route path='/newbasing/' Component={() => <Home isLoggedIn={isLoggedIn} userObj={userObj}/>}/>
                             <Route path='/profile' Component={() => <Profile userObj={userObj} />}/>
                         </Route>
                     ) : (
                         <Route>
-                            <Route path='/newbasing' Component={Auth}/>
+                            <Route path='/newbasing/' Component={Auth}/>
                         </Route>
                     )
                 }
