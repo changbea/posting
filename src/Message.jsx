@@ -34,7 +34,7 @@ function Message({ msgObj, isOwner }) {
     const data = await doc(dbservice, `num/${msgObj.id}`)
     updateDoc(data, {text: {
       count: count,
-      counter: counter}
+      counter: counter,}
     });
     setEditing(false)
   }
@@ -52,9 +52,11 @@ function Message({ msgObj, isOwner }) {
           </form>
         </div>
         :
-        <div>
-          <div className='d-flex justify-content-center'>{msgObj.text.count}</div>
-          <div className='d-flex justify-content-center'>{msgObj.text.counter}</div>
+        <div>  
+          <div className='d-flex justify-content-center'>Study Room Number: {msgObj.text.counting}</div>
+          <div className='d-flex justify-content-center'>Seat Number: {msgObj.text.counter}</div>
+          <div className='d-flex justify-content-center'>From: {msgObj.text.clock.hour}:{msgObj.text.clock.minute}</div>
+          <div className='d-flex justify-content-center'>To: {msgObj.text.clocker.hour}:{msgObj.text.clocker.minute}</div>
           {isOwner &&
             <div className='d-flex justify-content-center'>
               <button className='btn btn-outline-primary' onClick={onEditClick}>Edit Seat</button>

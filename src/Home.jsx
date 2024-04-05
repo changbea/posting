@@ -5,6 +5,7 @@ import { ref, getDownloadURL, uploadBytes, deleteObject } from 'firebase/storage
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Auth from './Auth'
 import Message from './Message'
+import Notice from './Notice'
 import Add from './Add'
 import { auth, onSocialClick, dbservice, storage } from './serverbase'
 import { v4 as uuidv4 } from 'uuid';
@@ -36,28 +37,12 @@ function Home({ isLoggedIn, userObj }) {
         <div className='d-flex flex-column'>
             <div className='d-flex justify-content-center'>Welcome {userObj.displayName}</div>
             <Add isLoggedIn={isLoggedIn} userObj={userObj}/>
-            <div>
-                <div className='d-flex justify-content-center'>Notice</div>
-                <div className='d-flex justify-content-center btn-group btn-group-toggle'>
-                    {noticeBorrow ?
-                        <div className='d-flex justify-content-center btn-group btn-group-toggle'>
-                            <button className='btn btn-outline-primary active' onClick={() => noticeBorrowOnClick(true)}>Someone wanting to Borrow</button>
-                            <button className='btn btn-outline-primary' onClick={() => noticeBorrowOnClick(false)}>Someone wanting to Lend</button>
-                        </div>
-                        :
-                        <div className='d-flex justify-content-center btn-group btn-group-toggle'>
-                            <button className='btn btn-outline-primary' onClick={() => noticeBorrowOnClick(true)}>Someone wanting to Borrow</button>  
-                            <button className='btn btn-outline-primary active' onClick={() => noticeBorrowOnClick(false)}>Someone wanting to Lend</button>  
-                        </div>
-                    }
-                </div>
-                {messages === [] ? <div>Not yet</div> : messages.map((msg) => <Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} />)}
-            </div>
             {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DemoContainer components={['TimePicker']}>
                     <TimePicker label="Basic time picker" />
                 </DemoContainer>
             </LocalizationProvider> */}
+            <Notice isLoggedIn={isLoggedIn} userObj={userObj}/>
         </div>
 
     )

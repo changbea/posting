@@ -29,6 +29,9 @@ function Navigation({ isLoggedIn, userObj }) {
               <Link to='/profile' onClick={checkbox}>{userObj.displayName}'s Profile</Link>
             </h1>
             <h1>
+              <Link to='/ranking' onClick={checkbox}>Ranking</Link>
+            </h1>
+            <h1>
               <Link to="/contact" onClick={checkbox}>Contact</Link>
             </h1>
             <h1>
