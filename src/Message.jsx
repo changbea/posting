@@ -11,7 +11,7 @@ const SignBtn = styled.div`
   justify-content: center;
 `
 
-function Message({ msgObj, isOwner }) {
+function Message({ msgObj, isOwner, userObj }) {
   const [editing, setEditing] = useState(false)
   const [count, setCount] = useState(msgObj.text.count)
   const [counter, setCounter] = useState(msgObj.text.counter)
@@ -39,7 +39,7 @@ function Message({ msgObj, isOwner }) {
     setEditing(false)
   }
 
-  return (  
+  return (
     <div className='border border-primary'>
       {editing ?
         <div>
@@ -53,6 +53,7 @@ function Message({ msgObj, isOwner }) {
         </div>
         :
         <div>  
+          <div className='d-flex justify-content-center'>User: {userObj.displayName}</div>
           <div className='d-flex justify-content-center'>Study Room Number: {msgObj.text.counting}</div>
           <div className='d-flex justify-content-center'>Seat Number: {msgObj.text.counter}</div>
           <div className='d-flex justify-content-center'>From: {msgObj.text.clock.hour}:{msgObj.text.clock.minute}</div>

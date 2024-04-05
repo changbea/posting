@@ -45,7 +45,13 @@ function Notice({ isLoggedIn, userObj }) {
                 </div>
             }
         </div>
-        {choose !== 0 && messages.map((msg) => <Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} />)}
+        {choose !== 0 && messages.map((msg) => {
+            if (msg.text.choose === choose) {
+                return(
+                    <Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} userObj={userObj}/>
+                )
+            }
+        })}
         {choose !== 0 && 
           <button className='btn btn-outline-primary' onClick={() => onClick(0)}>close</button>
         }
