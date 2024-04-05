@@ -15,7 +15,7 @@ function Router({ isLoggedIn, userObj }) {
                     isLoggedIn ? (
                         <Route>
                             <Route path='/newbasing/' Component={() => <Home isLoggedIn={isLoggedIn} userObj={userObj}/>}/>
-                            <Route path='/profile' Component={() => <Profile userObj={userObj} />}/>
+                            <Route path='/newbasing/profile' Component={() => <Profile userObj={userObj} />}/>
                         </Route>
                     ) : (
                         <Route>
