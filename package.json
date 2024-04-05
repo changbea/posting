@@ -2,7 +2,7 @@
   "name": "vite-project",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://changbea.github.io/posts/",
+  "homepage": "https://changbea.github.io/posting/",
   "type": "module",
   "scripts": {
     "dev": "vite",
