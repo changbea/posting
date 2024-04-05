@@ -44,7 +44,7 @@ function Navigation({ isLoggedIn, userObj }) {
           {!isLoggedIn &&
             <nav className="navigation">
               <h1 className='nav-padding'>
-                <Link to='/newbasing/newbasing'>Sign In&Up</Link>
+                <Link to='/newbasing/sign'>Sign In&Up</Link>
               </h1>
               <h1>
                 <Link to="/newbasing/contact">Contact</Link>
