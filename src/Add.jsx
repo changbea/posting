@@ -34,6 +34,7 @@ function Add({ isLoggedIn, userObj }) {
       event.preventDefault()
       if(count !== 0 && counter !== 0 && from !== '' && to !== '') {
         await addDoc(collection(dbservice, 'num'), {
+          point: 0,
             text: {choose: choose, count: count, counting: roomList[count-1], counter: counter, clock: from, clocker: to},
             creatorClock: Date.now(),
             creatorId: userObj.uid,
