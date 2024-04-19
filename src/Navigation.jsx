@@ -18,11 +18,10 @@ function Navigation({ isLoggedIn, userObj }) {
 
   const handleClickAway = () => {
     setOpen(false);
-    console.log(open)
   };
 
   return(
-    <ClickAwayListener onClickAway={handleClickAway}>
+    <ClickAwayListener onClickAway={checkbox}>
               {/* <nav className='navbar'>
               <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
     <span className="navbar-toggler-icon"></span>menus
