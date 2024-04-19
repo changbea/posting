@@ -2,11 +2,8 @@ import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
-import Add from './Add'
-import Notice from './Notice'
 import { auth, onSocialClick, dbservice, storage } from './serverbase'
 import { updateProfile, getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import { collection, query, where, orderBy, addDoc, getDocs, doc, onSnapshot, deleteDoc, updateDoc, setDoc } from 'firebase/firestore';
 
 function Auth() {

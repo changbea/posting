@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { collection, addDoc, getDocs, doc, onSnapshot, query, orderBy } from 'firebase/firestore';
-import { ref, getDownloadURL, uploadBytes, deleteObject } from 'firebase/storage';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import { auth, onSocialClick, dbservice, storage } from './serverbase'
 import Message from './Message'
 

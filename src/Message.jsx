@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { auth, onSocialClick, dbservice, storage } from './serverbase'
 import { collection, query, where, orderBy, addDoc, getDocs, doc, onSnapshot, deleteDoc, updateDoc } from 'firebase/firestore';
-// import support from './support'
 import supporting from './supporting';
 import confirm from './confirm';
 import confirming from './confirming';

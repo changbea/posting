@@ -1,6 +1,5 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
-import 'firebase/firestore'
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
+import 'firebase/firestore'
 import Home from './Home'
 import Auth from './Auth'
 import Profile from './Profile'
