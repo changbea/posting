@@ -69,15 +69,6 @@ function Navigation({ isLoggedIn, userObj }) {
             </h1>
           </nav>
         }
-          {/* <ul className='nav'>
-              <li>
-              <Link className='menu' to='/'>Home</Link>
-              </li>
-              <li>
-              <Link className='menu' to='/profile'>{userObj.displayName}'s Profile</Link>
-              </li>
-            </ul> */}
-        {/* <h1>Pure CSS3/HTML full screen slide out menu.</h1> */}
         </div>
       </ClickAwayListener>
     )
