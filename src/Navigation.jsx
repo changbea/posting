@@ -38,19 +38,19 @@ function Navigation({ isLoggedIn, userObj }) {
         {isLoggedIn && 
         <nav className="navigation">
           <h1 className='nav-padding'>
-            <Link to='/newbasing/' onClick={checkbox}>메인 페이지</Link>
+            <Link to='/posting/' onClick={checkbox}>메인 페이지</Link>
           </h1>
           <h1>
-            <Link to='/newbasing/profile' onClick={checkbox}>{userObj.displayName}의 프로필</Link>
+            <Link to='/posting/profile' onClick={checkbox}>{userObj.displayName}의 프로필</Link>
           </h1>
           <h1>
-            <Link to='/newbasing/ranking' onClick={checkbox}>유저 랭킹</Link>
+            <Link to='/posting/ranking' onClick={checkbox}>유저 랭킹</Link>
           </h1>
           <h1>
-            <Link to="/newbasing/contact" onClick={checkbox}>신고하기</Link>
+            <Link to="/posting/contact" onClick={checkbox}>신고하기</Link>
           </h1>
           <h1>
-            <Link to="/newbasing/" onClick={() => {
+            <Link to="/posting/" onClick={() => {
               onLogOutClick()
               checkbox()
             }}>로그아웃</Link>
@@ -59,13 +59,13 @@ function Navigation({ isLoggedIn, userObj }) {
         {!isLoggedIn &&
           <nav className="navigation">
             <h1 className='nav-padding'>
-              <Link to='/newbasing/' onClick={checkbox}>메인 페이지</Link>
+              <Link to='/posting/' onClick={checkbox}>메인 페이지</Link>
             </h1>
             <h1>
-              <Link to='/newbasing/sign' onClick={checkbox}>로그인/회원가입</Link>
+              <Link to='/posting/sign' onClick={checkbox}>로그인/회원가입</Link>
             </h1>
             <h1>
-              <Link to="/newbasing/contact" onClick={checkbox}>신고하기</Link>
+              <Link to="/posting/contact" onClick={checkbox}>신고하기</Link>
             </h1>
           </nav>
         }
