@@ -35,6 +35,7 @@ function Navigation({ isLoggedIn, userObj }) {
           </div>
         </label>
         {isLoggedIn && 
+        // <div className='nav'>
         <nav className="navigation">
           <h1 className='nav-padding'>
             <Link to='/posting/' onClick={checkbox}>메인 페이지</Link>
@@ -54,8 +55,11 @@ function Navigation({ isLoggedIn, userObj }) {
               checkbox()
             }}>로그아웃</Link>
           </h1>
-        </nav>}
+        </nav>
+        // </div>
+        }
         {!isLoggedIn &&
+        <div className='nav'>
           <nav className="navigation">
             <h1 className='nav-padding'>
               <Link to='/posting/' onClick={checkbox}>메인 페이지</Link>
@@ -67,6 +71,7 @@ function Navigation({ isLoggedIn, userObj }) {
               <Link to="/posting/contact" onClick={checkbox}>신고하기</Link>
             </h1>
           </nav>
+        </div>
         }
         </div>
       </ClickAwayListener>
