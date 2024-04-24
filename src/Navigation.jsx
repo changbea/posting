@@ -42,11 +42,6 @@ function Navigation({ isLoggedIn, userObj }) {
 
   return(
     <ClickAwayListener onClickAway={(event) => checkbox(event)}>
-              {/* <nav className='navbar'>
-              <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-    <span className="navbar-toggler-icon"></span>menus
-  </button>
-              </nav> */}
       <div> 
         <input type="checkbox" id="nav-control" className="nav-control" onClick={handleClick}/>
         <label htmlFor="nav-control" className="toggle-button">
