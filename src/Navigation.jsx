@@ -5,23 +5,44 @@ import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import './Navigation.css'
 
 const onLogOutClick = () => auth.signOut();
-const checkbox = () => {
-  document.getElementById('nav-control').checked = false
-}
 function Navigation({ isLoggedIn, userObj }) {
   const [open, setOpen] = useState(false);
-
-  const handleClick = () => {
-    setOpen((prev) => !prev);
-    console.log(open)
+  const [chance, setChance] = useState(null);
+  
+  const checkbox = (event) => {
+    document.getElementById('nav-control').checked = false
+    document.getElementsByClassName('navigation')[0].style.left = '-100%'
+  }
+  const handleClick = (event) => {
+    if(document.getElementsByClassName('navigation')[0].style.left === '-100%') {
+      document.getElementsByClassName('navigation')[0].style.left = '0'
+    } else {
+      document.getElementsByClassName('navigation')[0].style.left = '-100%'
+    }
   };
-
-  const handleClickAway = () => {
-    setOpen(false);
-  };
+  let offsetX
+  const add = (event) => {
+    offsetX = event.clientX-event.target.getBoundingClientRect().left
+    event.target.addEventListener('pointermove', move)
+    console.log(offsetX)
+  }
+  const remove = (event) => {
+    event.target.removeEventListener('pointermove', move)
+    if (event.pageX-offsetX < 0) {
+      document.getElementById('nav-control').checked = false
+      event.target.style.left = '-100%'
+      setOpen(true)
+    }
+  }
+  const move = (event) => {
+    const el = event.target
+    if (event.pageX-offsetX < 0) {
+      el.style.left = `${event.pageX-offsetX}px`
+    }
+  }
 
   return(
-    <ClickAwayListener onClickAway={checkbox}>
+    <ClickAwayListener onClickAway={(event) => checkbox(event)}>
               {/* <nav className='navbar'>
               <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
     <span className="navbar-toggler-icon"></span>menus
@@ -35,43 +56,39 @@ function Navigation({ isLoggedIn, userObj }) {
           </div>
         </label>
         {isLoggedIn && 
-        // <div className='nav'>
-        <nav className="navigation">
+        <nav className="navigation"  onPointerDown={(event) => add(event)} onPointerUp={(event) => remove(event)}>
           <h1 className='nav-padding'>
-            <Link to='/posting/' onClick={checkbox}>메인 페이지</Link>
+            <Link to='/posting/' onClick={(event) => checkbox(event)}>메인 페이지</Link>
           </h1>
           <h1>
-            <Link to='/posting/profile' onClick={checkbox}>{userObj.displayName}의 프로필</Link>
+            <Link to='/posting/profile' onClick={(event) => checkbox(event)}>{userObj.displayName}의 프로필</Link>
           </h1>
           <h1>
-            <Link to='/posting/ranking' onClick={checkbox}>유저 랭킹</Link>
+            <Link to='/posting/ranking' onClick={(event) => checkbox(event)}>유저 랭킹</Link>
           </h1>
           <h1>
-            <Link to="/posting/contact" onClick={checkbox}>신고하기</Link>
+            <Link to="/posting/contact" onClick={(event) => checkbox(event)}>신고하기</Link>
           </h1>
           <h1>
-            <Link to="/posting/" onClick={() => {
+            <Link to="/posting/" onClick={(event) => {
               onLogOutClick()
-              checkbox()
+              checkbox(event)
             }}>로그아웃</Link>
           </h1>
         </nav>
-        // </div>
         }
         {!isLoggedIn &&
-        <div className='nav'>
-          <nav className="navigation">
+          <nav className="navigation" onPointerDown={(event) => add(event)} onPointerUp={(event) => remove(event)}>
             <h1 className='nav-padding'>
-              <Link to='/posting/' onClick={checkbox}>메인 페이지</Link>
+              <Link to='/posting/' onClick={(event) => checkbox(event)}>메인 페이지</Link>
             </h1>
             <h1>
-              <Link to='/posting/sign' onClick={checkbox}>로그인/회원가입</Link>
+              <Link to='/posting/sign' onClick={(event) => checkbox(event)}>로그인/회원가입</Link>
             </h1>
             <h1>
-              <Link to="/posting/contact" onClick={checkbox}>신고하기</Link>
+              <Link to="/posting/contact" onClick={(event) => checkbox(event)}>신고하기</Link>
             </h1>
           </nav>
-        </div>
         }
         </div>
       </ClickAwayListener>

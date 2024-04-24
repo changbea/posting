@@ -110,7 +110,7 @@ function Add({ isLoggedIn, userObj }) {
                             로그인이 필요합니다
                         </DialogContent>
                         <DialogActions>
-                        <Link to='/newbasing/sign' className='btn btn-outline-primary' onClick={handleClose}>로그인/회원가입 페이지</Link>
+                        <Link to='/posting/sign' className='btn btn-outline-primary' onClick={handleClose}>로그인/회원가입 페이지</Link>
                         <button className='btn btn-outline-primary' onClick={handleClose} autoFocus>
                             닫기
                         </button>

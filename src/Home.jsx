@@ -29,8 +29,10 @@ function Home({ isLoggedIn, userObj }) {
             // const number = snapshot.docs.map((document) => ({
             //     ...document.data(),
             // }));
-            const number = snapshot.data().points
-            setNum(number)
+            if (isLoggedIn) {
+                const number = snapshot.data().points
+                setNum(number)
+            }
         })
     }, [])
     
