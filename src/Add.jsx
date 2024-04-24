@@ -57,7 +57,7 @@ function Add({ isLoggedIn, userObj }) {
         setCounter(0)
         setProcess(false)
       } else {
-          alert('내용을 채워주세요')
+          alert('내용을 입력해 주세요')
       }
       console.log(process)
   }
