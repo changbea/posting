@@ -7,7 +7,6 @@ import './Navigation.css'
 const onLogOutClick = () => auth.signOut();
 function Navigation({ isLoggedIn, userObj }) {
   const [open, setOpen] = useState(false);
-  const [chance, setChance] = useState(null);
   
   const checkbox = (event) => {
     document.getElementById('nav-control').checked = false
