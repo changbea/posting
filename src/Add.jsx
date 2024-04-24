@@ -109,11 +109,6 @@ function Add({ isLoggedIn, userObj }) {
                 <div className='d-flex justify-content-center btn-group btn-group-toggle'>
                     <button className='btn btn-outline-primary' onClick={() => onClick(1)}>빌릴래요</button>
                     <button className='btn btn-outline-primary' onClick={() => onClick(2)}>빌려줄래요</button>
-                    <ButtonGroup variant="outlined" aria-label="Basic button group">
-                        <Button onClick={() => onClick(1)}>빌릴래요</Button>
-                        <Button onClick={() => onClick(2)}>빌려줄래요</Button>
-                        <Button>빌릴래요</Button>
-                    </ButtonGroup>
                     <Dialogs move={move} handleClose={handleClose} />
                 </div>
             }
@@ -121,11 +116,6 @@ function Add({ isLoggedIn, userObj }) {
                 <div className='d-flex justify-content-center btn-group btn-group-toggle'>
                     <button className='btn btn-outline-primary active' onClick={() => onClick(1)}>빌릴래요</button>
                     <button className='btn btn-outline-primary' onClick={() => onClick(2)}>빌려줄래요</button>
-                    <ButtonGroup variant="outlined" aria-label="Basic button group">
-                        <Button variant='contained' onClick={() => onClick(1)}>빌릴래요</Button>
-                        <Button onClick={() => onClick(2)}>빌려줄래요</Button>
-                        <Button>빌릴래요</Button>
-                    </ButtonGroup>
                 </div>
             }
             {choose === 2 &&
