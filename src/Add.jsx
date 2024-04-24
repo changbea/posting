@@ -8,6 +8,8 @@ import path from './assets/help_FILL0_wght400_GRAD0_opsz24.png';
 import Lotties from './Lotties'
 import Dialogs from './Dialogs'
 import Pickers from './Pickers'
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 function Add({ isLoggedIn, userObj }) {
   const [choose, setChoose] = useState(0);
@@ -62,7 +64,7 @@ function Add({ isLoggedIn, userObj }) {
 
   const onClick = (num) => {
     if (isLoggedIn) {
-        if (choose !== 0) {
+        if (choose === num) {
             setChoose(0)
         } else {
             setChoose(num)
@@ -107,6 +109,11 @@ function Add({ isLoggedIn, userObj }) {
                 <div className='d-flex justify-content-center btn-group btn-group-toggle'>
                     <button className='btn btn-outline-primary' onClick={() => onClick(1)}>빌릴래요</button>
                     <button className='btn btn-outline-primary' onClick={() => onClick(2)}>빌려줄래요</button>
+                    <ButtonGroup variant="outlined" aria-label="Basic button group">
+                        <Button onClick={() => onClick(1)}>빌릴래요</Button>
+                        <Button onClick={() => onClick(2)}>빌려줄래요</Button>
+                        <Button>빌릴래요</Button>
+                    </ButtonGroup>
                     <Dialogs move={move} handleClose={handleClose} />
                 </div>
             }
@@ -114,6 +121,11 @@ function Add({ isLoggedIn, userObj }) {
                 <div className='d-flex justify-content-center btn-group btn-group-toggle'>
                     <button className='btn btn-outline-primary active' onClick={() => onClick(1)}>빌릴래요</button>
                     <button className='btn btn-outline-primary' onClick={() => onClick(2)}>빌려줄래요</button>
+                    <ButtonGroup variant="outlined" aria-label="Basic button group">
+                        <Button variant='contained' onClick={() => onClick(1)}>빌릴래요</Button>
+                        <Button onClick={() => onClick(2)}>빌려줄래요</Button>
+                        <Button>빌릴래요</Button>
+                    </ButtonGroup>
                 </div>
             }
             {choose === 2 &&

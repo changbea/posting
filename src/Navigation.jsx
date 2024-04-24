@@ -14,8 +14,9 @@ function Navigation({ isLoggedIn, userObj }) {
   }
   const handleClick = (event) => {
     if(document.getElementsByClassName('navigation')[0].style.left === '-100%') {
-      document.getElementsByClassName('navigation')[0].style.left = '0'
-    } else if (document.getElementsByClassName('navigation')[0].style.left === '0') {
+      document.getElementsByClassName('navigation')[0].style.left = ''
+    } else if (document.getElementsByClassName('navigation')[0].style.left === '') {
+      document.getElementById('nav-control').checked = false
       document.getElementsByClassName('navigation')[0].style.left = '-100%'
     }
   };

@@ -9,7 +9,7 @@ function Notice({ isLoggedIn, userObj }) {
   const [process, setProcess] = useState(false);
 
   const onClick = (num) => {
-    if (choose !== 0) {
+    if (choose === num) {
         setChoose(0)
         setProcess(false)
     } else {

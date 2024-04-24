@@ -4,21 +4,23 @@ import Menu from './Menu'
 import Notice from './Notice'
 import Add from './Add'
 import { auth, onSocialClick, dbservice, storage } from './serverbase'
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 function Home({ isLoggedIn, userObj }) {
     const [messages, setMessages] = useState([]);
     const [num, setNum] = useState(null)
-    const noticeBorrowOnClick = (boolean) => setNoticeBorrow(boolean)
+    // const noticeBorrowOnClick = (boolean) => setNoticeBorrow(boolean)
     
-    useEffect(() => {
-        onSnapshot(query(collection(dbservice, 'num'), orderBy('creatorClock', 'desc')), (snapshot) => {
-            const newArray = snapshot.docs.map((document) => ({
-                id: document.id,
-                ...document.data(),
-            }));
-            setMessages(newArray)
-        })
-    })
+    // useEffect(() => {
+    //     onSnapshot(query(collection(dbservice, 'num'), orderBy('creatorClock', 'desc')), (snapshot) => {
+    //         const newArray = snapshot.docs.map((document) => ({
+    //             id: document.id,
+    //             ...document.data(),
+    //         }));
+    //         setMessages(newArray)
+    //     })
+    // })
 
     useEffect(() => {
         onSnapshot(query(doc(dbservice, `members/${userObj.uid}`)), (snapshot) => {

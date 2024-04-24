@@ -4,14 +4,10 @@ import { collection, query, where, orderBy, addDoc, getDocs, doc, onSnapshot, de
 import supporting from './supporting';
 import confirm from './confirm';
 import confirming from './confirming';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
+import Dialogs from './Dialogs';
 import { BrowserRouter, Routes, Route, useNavigate, Link } from 'react-router-dom'
 
 function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
-  const [count, setCount] = useState(msgObj.text.count)
-  const [counter, setCounter] = useState(msgObj.text.counter)
   const [num, setNum] = useState(null)
   const [value, setValue] = useState(null)
   const [move, setMove] = useState(false)
@@ -23,9 +19,6 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
 
   useEffect(() => {
     onSnapshot(query(doc(dbservice, `members/${msgObj.creatorId}`)), (snapshot) => {
-        // const number = snapshot.docs.map((document) => ({
-        //     ...document.data(),
-        // }));
         const number = snapshot.data().points
         setNum(number)
       }
@@ -84,7 +77,6 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
         <div className='d-flex justify-content-center'>좌석의 위치: {msgObj.text.counter}</div>
         <div className='d-flex justify-content-center'>이 때부터: {msgObj.text.clock.year}.{msgObj.text.clock.month}.{msgObj.text.clock.day} {msgObj.text.clock.hour}:{msgObj.text.clock.minute}</div>
         <div className='d-flex justify-content-center'>이 때까지: {msgObj.text.clock.year}.{msgObj.text.clock.month}.{msgObj.text.clock.day} {msgObj.text.clocker.hour}:{msgObj.text.clocker.minute}</div>
-        {/* <div className='d-flex justify-content-center'>ConnectedUser: {msgObj.connectedId}</div> */}
         <div className='d-flex justify-content-center'>승낙 유저 이름: {msgObj.connectedName}</div>
         <div className='d-flex justify-content-center'>진행 단계: {msgObj.round}</div>
         {isOwner &&
@@ -112,17 +104,7 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
             {msgObj.round === 1 &&
               <div className='d-flex justify-content-center'>
                 <button className='d-flex justify-content-center btn btn-outline-primary' onClick={() => support(userObj, msgObj, isLoggedIn)}>승낙하기</button>
-                <Dialog open={move} onClose={handleClose}>
-                  <DialogContent>
-                    로그인이 필요합니다
-                  </DialogContent>
-                  <DialogActions>
-                  <Link to='/newbasing/sign' className='btn btn-outline-primary' onClick={handleClose}>로그인/회원가입 페이지</Link>
-                  <button className='btn btn-outline-primary' onClick={handleClose} autoFocus>
-                    닫기
-                  </button>
-                  </DialogActions>
-                </Dialog>
+                <Dialogs move={move} handleClose={handleClose}/>
               </div>
             }
             {msgObj.round === 2 &&
