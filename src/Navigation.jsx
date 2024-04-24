@@ -6,7 +6,6 @@ import './Navigation.css'
 
 const onLogOutClick = () => auth.signOut();
 function Navigation({ isLoggedIn, userObj }) {
-  // const [open, setOpen] = useState(false);
   
   const checkbox = (event) => {
     document.getElementById('nav-control').checked = false
@@ -31,7 +30,6 @@ function Navigation({ isLoggedIn, userObj }) {
     if (event.pageX-offsetX < 0) {
       document.getElementById('nav-control').checked = false
       event.target.style.left = '-100%'
-      // setOpen(true)
     }
   }
   const move = (event) => {
