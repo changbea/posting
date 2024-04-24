@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react'
 // import viteLogo from '/vite.svg'
 import './App.css'
 import Router from './Router'
-import Lottie from 'react-lottie'
-import rain from './Animation.json'
+import Lotties from './Lotties'
 import { auth } from './serverbase'
 
 function App() {
@@ -12,14 +11,6 @@ function App() {
   const [init, setInit] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userObj, setUserObj] = useState(null)
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: rain,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
-  };
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -35,7 +26,7 @@ function App() {
 
   return (
     <div>
-      {init ? <Router isLoggedIn={isLoggedIn} userObj={userObj}/> : <Lottie options={defaultOptions} height={400} width={400} />}
+      {init ? <Router isLoggedIn={isLoggedIn} userObj={userObj}/> : <Lotties/>}
     </div>
   )
 }

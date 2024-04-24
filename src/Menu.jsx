@@ -20,11 +20,15 @@ function Menu({ isLoggedIn, userObj }) {
   }, [])
 
   const onClick = () => {
-    setChoose(true)
+    if (choose !== false) {
+        setChoose(false)
+    } else {
+        setChoose(true)
+    }
   }
   return (
     <div className='d-flex justify-content-center flex-column pb-5'>
-        <button className='btn btn-outline-primary' onClick={() => setChoose(true)}>내 상태</button>
+        <button className='btn btn-outline-primary' onClick={() => onClick()}>내 상태</button>
         {choose && 
         <div className='d-flex flex-column'>
             <div className='d-flex justify-content-center'>빌리기 상태</div>

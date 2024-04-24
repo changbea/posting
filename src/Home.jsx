@@ -6,10 +6,6 @@ import Add from './Add'
 import { auth, onSocialClick, dbservice, storage } from './serverbase'
 
 function Home({ isLoggedIn, userObj }) {
-    const [borrow, setBorrow] = useState(true);
-    const [noticeBorrow, setNoticeBorrow] = useState(true);
-    const [count, setCount] = useState('');
-    const [counter, setCounter] = useState('');
     const [messages, setMessages] = useState([]);
     const [num, setNum] = useState(null)
     const noticeBorrowOnClick = (boolean) => setNoticeBorrow(boolean)
