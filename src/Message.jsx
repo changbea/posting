@@ -63,8 +63,8 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
   }
 
   return (
-    <div className='border border-primary'>
-      <div>
+    <div className='p-5'>
+      <div className='border border-primary rounded'>
         {msgObj.text.choose == 1 &&
           <div className='d-flex justify-content-center'>빌리기</div>
         }

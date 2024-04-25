@@ -4,7 +4,7 @@ import { collection, query, where, orderBy, addDoc, getDocs, doc, onSnapshot, de
 import Message from './Message'
 
 function Menu({ isLoggedIn, userObj }) {
-  const [choose, setChoose] = useState(false);
+  const [choose, setChoose] = useState(true);
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -20,42 +20,49 @@ function Menu({ isLoggedIn, userObj }) {
   }, [])
 
   const onClick = () => {
-    if (choose !== false) {
-        setChoose(false)
-    } else {
-        setChoose(true)
-    }
+    // if (choose !== false) {
+    //     setChoose(false)
+    // }
+    setChoose(true)
   }
   return (
     <div className='d-flex justify-content-center flex-column pb-5'>
-        <button className='btn btn-outline-primary' onClick={() => onClick()}>내 상태</button>
-        {choose && 
-        <div className='d-flex flex-column'>
-            <div className='d-flex justify-content-center'>빌리기 상태</div>
-                {messages.map((msg) => {
-                    if(msg.creatorId === userObj.uid) {
-                        if(msg.text.choose === 1) {
-                            return(<Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} userObj={userObj}/>)
-                        }
-                    }
-                })}
-            <div className='d-flex justify-content-center'>빌려주기 상태</div>
-                {messages.map((msg) => {
-                    if(msg.creatorId === userObj.uid) {
-                        if(msg.text.choose === 2) {
-                            return(<Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} userObj={userObj}/>)
-                        }
-                    }
-                })}
-            <div className='d-flex justify-content-center'>요청/승낙 상태</div>
-                {messages.map((msg) => {
-                    if(msg.connectedId === userObj.uid) {
-                        return(<Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} userObj={userObj}/>)
-                    }
-                })}
-            <button className='btn btn-outline-primary' onClick={() => setChoose(false)}>닫기</button>
+        <div className='d-flex justify-content-center btn-group btn-group-toggle'>
+            <button className='btn btn-outline-primary active' onClick={() => onClick()}>내 상태</button>
         </div>
-        }
+        {/* {choose && */}
+        <div>
+            <div className='d-flex p-5'>
+                <div className='d-flex flex-column border border-primary rounded w-50'>
+                    <div className='d-flex justify-content-center'>빌리기/빌려주기 상태</div>
+                        {messages.map((msg) => {
+                            if(msg.creatorId === userObj.uid) {
+                                if(msg.round !== 5) {
+                                    return(<Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} userObj={userObj}/>)
+                                }
+                            }
+                        })}
+                </div>
+                <div className='d-flex flex-column border border-primary rounded w-50'>
+                    <div className='d-flex justify-content-center'>요청/승낙 상태</div>
+                        {messages.map((msg) => {
+                            if(msg.connectedId === userObj.uid) {
+                                return(<Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} userObj={userObj}/>)
+                            }
+                        })}
+                </div>
+            </div>
+            {/* <div className='px-5'>
+                <div className='d-flex justify-content-center border border-primary'>요청/승낙 상태</div>
+                    {messages.map((msg) => {
+                        if(msg.connectedId === userObj.uid) {
+                            return(<Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} userObj={userObj}/>)
+                        }
+                    })}
+            </div> */}
+            {/* <button className='btn btn-outline-primary' onClick={() => setChoose(false)}>닫기</button> */}
+        </div>
+        {/* } */}
     </div>  
   )
 }

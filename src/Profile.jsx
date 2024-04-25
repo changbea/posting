@@ -110,14 +110,14 @@ function Profile({ userObj }) {
       <div>
         최근 완료된 빌리기/빌려주기: {message.length+messages.length}
       </div>
-      <div>
+      <div className='d-flex justify-content-center flex-wrap'>
         {message.map((msg) => {
           if (msg.round === 5) {
             return(<Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} userObj={userObj}/>)
           }
         })}
       </div>
-      <div>
+      <div className='d-flex justify-content-center flex-wrap'>
         {messages.map((msg) => {
           if (msg.round === 5) { 
             return(<Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} userObj={userObj}/>)

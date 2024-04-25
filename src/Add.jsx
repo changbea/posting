@@ -11,7 +11,7 @@ import Pickers from './Pickers'
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
-function Add({ isLoggedIn, userObj }) {
+function Add({ isLoggedIn, userObj, valuing }) {
   const [choose, setChoose] = useState(0);
   const [count, setCount] = useState(0);
   const [counter, setCounter] = useState(0);
@@ -40,9 +40,24 @@ function Add({ isLoggedIn, userObj }) {
 
   const submit = async (event) => {
       event.preventDefault()
+      console.log(from)
       if(count !== 0 && counter !== 0 && from !== '' && to !== '') {
-        setProcess(true)
-        await addDoc(collection(dbservice, 'num'), {
+        if (from.gmt > to.gmt) {
+            alert('내용을 입력해 주세요')
+        } else {
+            if (to.year-from.year > 0) {
+                setValue((to.year-from.year)*366*24*60)
+            } else if (to.month-from.month > 0) {
+                setValue((to.month-from.month)*31*24*60)
+            } else if (to.day-from.day > 0) {
+                setValue((to.day-from.day)*24*60)
+            } else if (to.hour-from.hour > 0) {
+                setValue((to.hour-from.hour)*60)
+            } else if (to.minute-from.minute > 0) {
+                setValue(to.minute-from.minute)
+            }
+            setProcess(true)
+            await addDoc(collection(dbservice, 'num'), {
             point: value,
             displayName: userObj.displayName,
             text: {choose: choose, count: count, counting: roomList[count-1], counter: counter, clock: from, clocker: to},
@@ -51,11 +66,12 @@ function Add({ isLoggedIn, userObj }) {
             creatorId: userObj.uid,
             connectedId: null,
             connectedName: null,
-        })
-        setChoose(0)
-        setCount(0)
-        setCounter(0)
-        setProcess(false)
+            })
+            setChoose(0)
+            setCount(0)
+            setCounter(0)
+            setProcess(false)
+        }
       } else {
           alert('내용을 입력해 주세요')
       }
@@ -75,11 +91,10 @@ function Add({ isLoggedIn, userObj }) {
   }
 
   const onChangeFrom = (event) => {
-    console.log(event)
-    setFrom({year: event.$y, month: event.$M+1, day:event.$D, hour: event.$H, minute: event.$m})
+    setFrom({gmt: event.$d, year: event.$y, month: event.$M+1, day:event.$D, hour: event.$H, minute: event.$m})
   }
   const onChangeTo = (event) => {
-    setTo({year: event.$y, month: event.$M+1, day:event.$D, hour: event.$H, minute: event.$m})
+    setTo({gmt: event.$d, year: event.$y, month: event.$M+1, day:event.$D, hour: event.$H, minute: event.$m})
 }   
   const handleClose = () => {
     setMove(false);
@@ -101,31 +116,28 @@ function Add({ isLoggedIn, userObj }) {
   const roomTwo = Array(315).fill().map((value, index) => <option key={index+1} value={index+1}>{index+1}</option>)
   const roomThree = Array(156).fill().map((value, index) => <option key={index+1} value={index+1}>{index+1}</option>)
   const roomFour = Array(149).fill().map((value, index) => <option key={index+1} value={index+1}>{index+1}</option>)
-
   return (
     <div className='d-flex flex-column'>
-        <div className='d-flex justify-content-center btn-group btn-group-toggle'>
-            {choose === 0 && 
+        <div>
+            {/* {choose === 0 && 
                 <div className='d-flex justify-content-center btn-group btn-group-toggle'>
                     <button className='btn btn-outline-primary' onClick={() => onClick(1)}>빌릴래요</button>
                     <button className='btn btn-outline-primary' onClick={() => onClick(2)}>빌려줄래요</button>
                     <Dialogs move={move} handleClose={handleClose} />
                 </div>
-            }
-            {choose === 1 &&
+            } */}
+            {valuing === 0 &&
                 <div className='d-flex justify-content-center btn-group btn-group-toggle'>
                     <button className='btn btn-outline-primary active' onClick={() => onClick(1)}>빌릴래요</button>
-                    <button className='btn btn-outline-primary' onClick={() => onClick(2)}>빌려줄래요</button>
                 </div>
             }
-            {choose === 2 &&
+            {valuing === 3 &&
                 <div className='d-flex justify-content-center btn-group btn-group-toggle'>
-                    <button className='btn btn-outline-primary' onClick={() => onClick(1)}>빌릴래요</button>  
                     <button className='btn btn-outline-primary active' onClick={() => onClick(2)}>빌려줄래요</button>  
                 </div>
             }
         </div>
-        {choose !== 0 &&
+        {valuing !== null &&
             <div>
                 {!process && 
                 <div>
@@ -150,7 +162,7 @@ function Add({ isLoggedIn, userObj }) {
                     </div>
                     <div>언제부터 언제까지인가요</div>
                     <Pickers onChangeFrom={onChangeFrom} onChangeTo={onChangeTo} />
-                    <div className='d-flex justify-content-center'>
+                    {/* <div className='d-flex justify-content-center'>
                         <Rating
                             value={value}
                             onChange={(event, newValue) => setValue(newValue)}
@@ -158,8 +170,8 @@ function Add({ isLoggedIn, userObj }) {
                     </div>
                     <div className='d-flex justify-content-center'>
                         <div>
-                            {choose === 1 && <span>몇 포인트에 빌리시겠어요: </span>}
-                            {choose === 2 && <span>몇 포인트에 빌려주시겠어요: </span>}
+                            {valuing === 0 && <span>몇 포인트에 빌리시겠어요: </span>}
+                            {valuing === 3 && <span>몇 포인트에 빌려주시겠어요: </span>}
                             <span>{value} </span>
                             <img src={path} aria-describedby={id} onClick={handleClick}/>
                         </div>
@@ -173,15 +185,15 @@ function Add({ isLoggedIn, userObj }) {
                                 horizontal: 'left',
                             }}
                         >
-                            {choose === 1 && <div>빌려준 유저에게 포인트를 제공할 수 있어요.</div>}
-                            {choose === 2 && <div>빌려받은 유저로부터 포인트를 제공받을 수 있어요.</div>}
+                            {valuing === 0 && <div>빌려준 유저에게 포인트를 제공할 수 있어요.</div>}
+                            {valuing === 3 && <div>빌려받은 유저로부터 포인트를 제공받을 수 있어요.</div>}
                         </Popover>
-                    </div>
+                    </div> */}
                     <div className='d-flex justify-content-center'>
                         <form id='selection' onSubmit={submit}>
                             <input className='btn btn-outline-primary' type='submit' value='등록하기'/>
                         </form>
-                        <button className='btn btn-outline-primary' onClick={() => onClick(0)}>취소하기</button>
+                        {/* <button className='btn btn-outline-primary' onClick={() => onClick(0)}>취소하기</button> */}
                     </div>
                 </div>
                 }

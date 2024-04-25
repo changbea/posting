@@ -4,11 +4,8 @@ import Menu from './Menu'
 import Notice from './Notice'
 import Add from './Add'
 import { auth, onSocialClick, dbservice, storage } from './serverbase'
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
 
-function Home({ isLoggedIn, userObj }) {
-    const [messages, setMessages] = useState([]);
+function Home({ isLoggedIn, userObj, value }) {
     const [num, setNum] = useState(null)
     // const noticeBorrowOnClick = (boolean) => setNoticeBorrow(boolean)
     
@@ -38,14 +35,19 @@ function Home({ isLoggedIn, userObj }) {
         <div className='d-flex flex-column'>
             <div className='d-flex justify-content-center'>좋은 날씨네요 {userObj.displayName} 님</div>
             {isLoggedIn && <div className='d-flex justify-content-center'>내 포인트: {num}</div>}
-            {isLoggedIn && <Menu userObj={userObj}/>}
-            <Add isLoggedIn={isLoggedIn} userObj={userObj}/>
-            {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer components={['TimePicker']}>
-                    <TimePicker label="Basic time picker" />
-                </DemoContainer>
-            </LocalizationProvider> */}
-            <Notice isLoggedIn={isLoggedIn} userObj={userObj}/>
+            {value === 0 && 
+                <Add isLoggedIn={isLoggedIn} userObj={userObj} valuing={value}/>
+            }
+            {value === 1 &&
+                <Notice isLoggedIn={isLoggedIn} userObj={userObj} valuing={value}/>
+            }
+            {value === 2 && <Menu userObj={userObj}/>}
+            {value === 3 && 
+                <Add isLoggedIn={isLoggedIn} userObj={userObj} valuing={value}/>
+            }
+            {value === 4 &&
+                <Notice isLoggedIn={isLoggedIn} userObj={userObj} valuing={value}/>
+            }
         </div>
 
     )
