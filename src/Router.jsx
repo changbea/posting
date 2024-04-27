@@ -8,7 +8,7 @@ import Ranking from './Ranking'
 import Navigation from './Navigation'
 import Navigations from './Navigations'
 
-function Router({ isLoggedIn, userObj }) {
+function Router({ isLoggedIn, userObj, newAccount, setNewAccount }) {
     const [value, setValue] = useState(2);
     return (
         <BrowserRouter>
@@ -25,7 +25,7 @@ function Router({ isLoggedIn, userObj }) {
                     ) : (
                         <Route>
                             <Route path='/posting/' Component={() => <Home isLoggedIn={isLoggedIn} userObj={{uid: null}} value={value}/>}/>
-                            <Route path='/posting/sign' Component={Auth}/>
+                            <Route path='/posting/sign' Component={() => <Auth newAccount={newAccount} setNewAccount={setNewAccount}/>}/>
                         </Route>
                     )
                 }

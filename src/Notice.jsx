@@ -6,15 +6,12 @@ import Message from './Message'
 function Notice({ isLoggedIn, userObj, valuing }) {
   const [choose, setChoose] = useState(0);
   const [messages, setMessages] = useState([]);
-  const [process, setProcess] = useState(false);
 
   const onClick = (num) => {
     if (choose === num) {
         setChoose(0)
-        setProcess(false)
     } else {
         setChoose(num)
-        setProcess(true)
     }
   }
 

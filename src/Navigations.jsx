@@ -15,11 +15,11 @@ function Navigations({ isLoggedIn, value, setValue }) {
                         setValue(newValue)
                     }}
                 >
-                    <BottomNavigationAction label={<Link to='./posting/'>Borrow</Link>}/>
-                    <BottomNavigationAction label={<Link to='./posting/'>Borrowing</Link>}/>
-                    <BottomNavigationAction label={<Link to='./posting/'>Status</Link>}/>
-                    <BottomNavigationAction label={<Link to='./posting/'>Lend</Link>}/>
-                    <BottomNavigationAction label={<Link to='./posting/'>Lending</Link>}/>
+                    <BottomNavigationAction label={<Link to='./posting/'>빌리기</Link>}/>
+                    <BottomNavigationAction label={<Link to='./posting/'>빌리기 게시판</Link>}/>
+                    <BottomNavigationAction label={<Link to='./posting/'>내 상태</Link>}/>
+                    <BottomNavigationAction label={<Link to='./posting/'>빌려주기</Link>}/>
+                    <BottomNavigationAction label={<Link to='./posting/'>빌려주기 게시판</Link>}/>
                 </BottomNavigation>
             }
             {!isLoggedIn && 

@@ -11,6 +11,7 @@ function App() {
   const [init, setInit] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userObj, setUserObj] = useState(null)
+  const [newAccount, setNewAccount] = useState({account: false, round: 0})
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -26,7 +27,7 @@ function App() {
 
   return (
     <div>
-      {init ? <Router isLoggedIn={isLoggedIn} userObj={userObj}/> : <Lotties/>}
+      {init ? <Router isLoggedIn={isLoggedIn} userObj={userObj} newAccount={newAccount} setNewAccount={setNewAccount}/> : <Lotties/>}
     </div>
   )
 }

@@ -18,11 +18,14 @@ function Add({ isLoggedIn, userObj, valuing }) {
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
   const [move, setMove] = useState(false)
-  const [value, setValue] = useState(1);
+//   const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [process, setProcess] = useState(false)
+  const value = [0, 0]
 
   const roomList = ['one', 'two', 'three', 'four', 'focus']
+//   {valuing === 0 && setChoose(1)}
+//   {valuing === 3 && setChoose(2)}
   const changeRoom = (event) => {
     event.preventDefault()
     const {
@@ -45,22 +48,33 @@ function Add({ isLoggedIn, userObj, valuing }) {
         if (from.gmt > to.gmt) {
             alert('내용을 입력해 주세요')
         } else {
+            console.log(to.year-from.year)
+            console.log(to.month-from.month)
+            console.log(to.day-from.day)
+            console.log(to.hour-from.hour)
+            console.log(to.minute-from.minute)
+
             if (to.year-from.year > 0) {
-                setValue((to.year-from.year)*366*24*60)
+                value[0] = (to.year-from.year)*366*24*60
             } else if (to.month-from.month > 0) {
-                setValue((to.month-from.month)*31*24*60)
+                value[0] = (to.month-from.month)*31*24*60
             } else if (to.day-from.day > 0) {
-                setValue((to.day-from.day)*24*60)
+                value[0] = (to.day-from.day)*24*60
             } else if (to.hour-from.hour > 0) {
-                setValue((to.hour-from.hour)*60)
+                value[0] = (to.hour-from.hour)*60
             } else if (to.minute-from.minute > 0) {
-                setValue(to.minute-from.minute)
+                value[0] = to.minute-from.minute
+            }
+            if (valuing === 0) {
+                value[1] = 1
+            } else {
+                value[1] = 2
             }
             setProcess(true)
             await addDoc(collection(dbservice, 'num'), {
-            point: value,
+            point: value[0],
             displayName: userObj.displayName,
-            text: {choose: choose, count: count, counting: roomList[count-1], counter: counter, clock: from, clocker: to},
+            text: {choose: value[1], count: count, counting: roomList[count-1], counter: counter, clock: from, clocker: to},
             round: 1,
             creatorClock: Date.now(),
             creatorId: userObj.uid,

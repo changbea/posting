@@ -43,13 +43,15 @@ function Navigation({ isLoggedIn, userObj }) {
 
   return(
     <ClickAwayListener onClickAway={(event) => checkbox(event)}>
-      <div> 
+      <div>
+        {/* <div> */}
         <input type="checkbox" id="nav-control" className="nav-control" onClick={handleClick}/>
         <label htmlFor="nav-control" className="toggle-button">
           <div className="wolverine">
             <div className="claws"></div>
           </div>
         </label>
+        {/* </div>  */}
         {isLoggedIn && 
         <nav className="navigation"  onPointerDown={(event) => add(event)} onPointerUp={(event) => remove(event)}>
           <h1 className='nav-padding'>
