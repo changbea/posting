@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import { auth, onSocialClick, dbservice, storage } from './serverbase'
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
-import './Navigation.css'
+import './Navigation.module.css'
 
 const onLogOutClick = () => auth.signOut();
 function Navigation({ isLoggedIn, userObj }) {
