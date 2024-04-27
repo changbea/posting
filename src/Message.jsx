@@ -63,7 +63,7 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
   }
 
   return (
-    <div className='p-5'>
+    <div className='d-flex justify-content-center p-5'>
       <Link to='/posting/contact' className='border border-primary btn rounded'>
         {msgObj.text.choose == 1 &&
           <div className='d-flex justify-content-center'>빌리기</div>
@@ -100,7 +100,7 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
           </div>
         }
         {!isOwner &&
-          <div>
+          <div className='d-flex justify-content-center'>
             {msgObj.round === 1 &&
               <div className='d-flex justify-content-center'>
                 <button className='d-flex justify-content-center btn btn-outline-primary' onClick={() => support(userObj, msgObj, isLoggedIn)}>승낙하기</button>

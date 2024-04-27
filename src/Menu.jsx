@@ -35,6 +35,7 @@ function Menu({ isLoggedIn, userObj }) {
             <div className='d-flex p-5'>
                 <div className='d-flex flex-column border border-primary rounded w-50'>
                     <div className='d-flex justify-content-center'>빌리기/빌려주기 상태</div>
+                    <div className='d-flex justify-content-center flex-wrap'>
                         {messages.map((msg) => {
                             if(msg.creatorId === userObj.uid) {
                                 if(msg.round !== 5) {
@@ -42,16 +43,19 @@ function Menu({ isLoggedIn, userObj }) {
                                 }
                             }
                         })}
+                    </div>
                 </div>
                 <div className='d-flex flex-column border border-primary rounded w-50'>
                     <div className='d-flex justify-content-center'>요청/승낙 상태</div>
-                        {messages.map((msg) => {
-                            if(msg.connectedId === userObj.uid) {
-                                if (msg.round !== 5) {
-                                    return(<Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} userObj={userObj}/>)
+                        <div className='d-flex justify-content-center flex-wrap'>
+                            {messages.map((msg) => {
+                                if(msg.connectedId === userObj.uid) {
+                                    if (msg.round !== 5) {
+                                        return(<Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} userObj={userObj}/>)
+                                    }
                                 }
-                            }
-                        })}
+                            })}
+                        </div>
                 </div>
             </div>
             {/* <div className='px-5'>
