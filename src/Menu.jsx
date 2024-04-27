@@ -58,17 +58,7 @@ function Menu({ isLoggedIn, userObj }) {
                         </div>
                 </div>
             </div>
-            {/* <div className='px-5'>
-                <div className='d-flex justify-content-center border border-primary'>요청/승낙 상태</div>
-                    {messages.map((msg) => {
-                        if(msg.connectedId === userObj.uid) {
-                            return(<Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} userObj={userObj}/>)
-                        }
-                    })}
-            </div> */}
-            {/* <button className='btn btn-outline-primary' onClick={() => setChoose(false)}>닫기</button> */}
         </div>
-        {/* } */}
     </div>  
   )
 }
