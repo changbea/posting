@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { auth, onSocialClick, dbservice, storage } from './serverbase'
 import { collection, query, where, orderBy, addDoc, getDocs, doc, onSnapshot, deleteDoc, updateDoc } from 'firebase/firestore';
-import '@mantine/dropzone/styles.css';
+// import '@mantine/dropzone/styles.css';
 import Rating from '@mui/material/Rating';
 import Popover from '@mui/material/Popover';
 import path from './assets/help_FILL0_wght400_GRAD0_opsz24.png';

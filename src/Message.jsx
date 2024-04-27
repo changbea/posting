@@ -64,7 +64,7 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
 
   return (
     <div className='d-flex justify-content-center p-5'>
-      <Link to='/posting/contact' className='border border-primary btn rounded'>
+      <Link to='/posting/specific' className='border border-primary btn rounded'>
         {msgObj.text.choose == 1 &&
           <div className='d-flex justify-content-center'>빌리기</div>
         }

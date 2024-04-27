@@ -5,6 +5,7 @@ import Home from './Home'
 import Auth from './Auth'
 import Profile from './Profile'
 import Ranking from './Ranking'
+import Specific from './Specific'
 import Navigation from './Navigation'
 import Navigations from './Navigations'
 
@@ -21,6 +22,7 @@ function Router({ isLoggedIn, userObj, newAccount, setNewAccount }) {
                             <Route path='/posting/sign' Component={() => <Home isLoggedIn={isLoggedIn} userObj={userObj} value={value}/>}/>
                             <Route path='/posting/profile' Component={() => <Profile userObj={userObj} />}/>
                             <Route path='/posting/ranking' Component={() => <Ranking userObj={userObj} />}/>
+                            <Route path='/posting/specific' Component={() => <Specific />}/>
                         </Route>
                     ) : (
                         <Route>
