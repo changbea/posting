@@ -55,9 +55,6 @@ function Notice({ isLoggedIn, userObj, valuing }) {
                 }
             })}
         </div>
-        {/* {choose !== 0 && 
-          <button className='btn btn-outline-primary' onClick={() => onClick(0)}>닫기</button>
-        } */}
     </div>
   )
 }
