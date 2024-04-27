@@ -20,17 +20,14 @@ function Menu({ isLoggedIn, userObj }) {
   }, [])
 
   const onClick = () => {
-    // if (choose !== false) {
-    //     setChoose(false)
-    // }
     setChoose(true)
   }
+  
   return (
     <div className='d-flex justify-content-center flex-column pb-5'>
         <div className='d-flex justify-content-center btn-group btn-group-toggle'>
             <button className='btn btn-outline-primary active' onClick={() => onClick()}>내 상태</button>
         </div>
-        {/* {choose && */}
         <div>
             <div className='d-flex p-5'>
                 <div className='d-flex flex-column border border-primary rounded w-50'>
