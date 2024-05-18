@@ -1,0 +1,149 @@
+import { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { auth, onSocialClick, dbservice, storage } from './serverbase'
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
+import './Navigation.css'
+import Mode from './Mode'
+import Avatars from './Avatars'
+
+const onLogOutClick = () => auth.signOut();
+function Navigation({ isLoggedIn, userObj, value, setValue, side, setSide, sideNavigation, setSideNavigation }) {
+  // const [open, setOpen] = useState(false);
+  const [check, setCheck] = useState(false)
+  
+  const checkbox = (event) => {
+    setCheck(false)
+    // document.getElementById('nav-control').checked = false
+    // document.getElementsByClassName('navigation')[0].style.left = '-100%'
+  }
+  const handleClick = (event) => {
+    if(document.getElementsByClassName('navigation')[0].style.left === '-100%') {
+      document.getElementsByClassName('navigation')[0].style.left = ''
+    } else if (document.getElementsByClassName('navigation')[0].style.left === '0') {
+      document.getElementById('nav-control').checked = false
+      document.getElementsByClassName('navigation')[0].style.left = '-100%'
+    }
+  };
+  let offsetX
+  const add = (event) => {
+    offsetX = event.clientX-event.target.getBoundingClientRect().left
+    event.target.addEventListener('pointermove', move)
+    console.log(offsetX)
+  }
+  const remove = (event) => {
+    event.target.removeEventListener('pointermove', move)
+    if (event.pageX-offsetX < 0) {
+      document.getElementById('nav-control').checked = false
+      event.target.style.left = '-100%'
+      // setOpen(true)
+    }
+  }
+  const move = (event) => {
+    const el = event.target
+    if (event.pageX-offsetX < 0) {
+      el.style.left = `${event.pageX-offsetX}px`
+    }
+  }
+
+  const checking = () => {
+    setCheck(!check)
+    // console.log(check)
+  }
+  // const navControl = () => {
+  // if (check) {
+  //     return (
+  //       'navControlCheck'
+  //     )
+  //   } else {
+  //     return (
+  //       'navControl'
+  //     )
+  //   }
+  // }
+  // const navigation = () => {
+  //   if (check) {
+  //     return ('navigationCheck')
+  //   } else {
+  //     return ('navigation')
+  //   }
+  // }
+
+  let navControl
+  let navigation
+  if (check) {
+    navControl = 'navControlChecked'
+    navigation = 'navigationChecked'
+    setSide('naving d-flex flex-column')
+    setSideNavigation('naving border border-primary rounded-top position-fixed bottom-0 end-0')
+  } else {
+    navControl = 'navControl'
+    navigation = 'navigation'
+    setSide('d-flex flex-column')
+    setSideNavigation('border border-primary rounded-top position-fixed bottom-0 start-0 end-0')
+  }
+
+  return(
+    <ClickAwayListener onClickAway={(event) => checkbox(event)}>
+      <div>
+        {/* <div> */}
+        <div className={navControl} onClick={checking}>
+        <Avatars checking={checking}/>
+        {/* <input type="checkbox" id="nav-control" className="nav-control" onClick={handleClick}/> */}
+          <label htmlFor="nav-control" className="toggle-button">
+            <div className="wolverine">
+              <div className="claws"></div>
+            </div>
+          </label>
+        </div>
+        {/* </div>  */}
+        {isLoggedIn && 
+        <nav className={navigation}  onPointerDown={(event) => add(event)} onPointerUp={(event) => remove(event)}>
+          <h5 className='nav-padding'>
+            <Mode/>
+          </h5>
+          <h1 className='nav-padding'>
+            <Link to='/posting/' onClick={(event) => checkbox(event)}>메인 페이지</Link>
+          </h1>
+          <h1>
+            <Link to='/posting/profile' onClick={(event) => checkbox(event)}>{userObj.displayName}의 프로필</Link>
+          </h1>
+          <h1>
+            <Link to='/posting/ranking' onClick={(event) => checkbox(event)}>유저 랭킹</Link>
+          </h1>
+          <h1>
+            <Link to="/posting/contact" onClick={(event) => checkbox(event)}>신고하기</Link>
+          </h1>
+          <h1>
+            <Link to="/posting/" onClick={(event) => {
+              onLogOutClick()
+              checkbox(event)
+              setValue(1)
+            }}>로그아웃</Link>
+          </h1>
+        </nav>
+        }
+        {!isLoggedIn &&
+          <nav className={navigation} onPointerDown={(event) => add(event)} onPointerUp={(event) => remove(event)}>
+            <h5 className='nav-padding'>
+              <Link to='/posting/' onClick={(event) => checkbox(event)}>메인 페이지</Link>
+            </h5>
+            <h1 className='nav-padding'>
+              <Link to='/posting/' onClick={(event) => checkbox(event)}>메인 페이지</Link>
+            </h1>
+            <h1>
+              <Link to='/posting/' onClick={(event) => {
+                checkbox(event)
+                setValue(1)
+              }}>로그인/회원가입</Link>
+            </h1>
+            <h1>
+              <Link to="/posting/contact" onClick={(event) => checkbox(event)}>신고하기</Link>
+            </h1>
+          </nav>
+        }
+        </div>
+      </ClickAwayListener>
+    )
+}
+
+export default Navigation
