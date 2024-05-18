@@ -3,6 +3,8 @@ import { auth, onSocialClick, dbservice, storage } from './serverbase'
 import { collection, query, where, orderBy, addDoc, getDocs, doc, onSnapshot, deleteDoc, updateDoc } from 'firebase/firestore';
 // import supporting from './supporting';
 import Btn from './Btn';
+import Avatars from './Avatars';
+import FastRewindIcon from '@mui/icons-material/FastRewind';
 // import confirm from './confirm';
 // import confirming from './confirming';
 // import Dialogs from './Dialogs';
@@ -32,9 +34,8 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn, counter, setCounter }) 
         setValue(element)
       })
     }
-    const currentTheme = localStorage.getItem("theme");
   })
-
+  
   // const onClick = () => {
   //   const data = doc(dbservice, `num/${msgObj.id}`)
   //   updateDoc(data, {round: 5});
@@ -85,6 +86,11 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn, counter, setCounter }) 
         }
         {/* <div className='d-flex justify-content-center'>요청 유저 이름: {msgObj.displayName}</div>
         <div className='d-flex justify-content-center'>포인트: {msgObj.point}</div> */}
+        <div className='d-flex justify-content-center'>
+          <Avatars altName={msgObj.displayName} />
+          <FastRewindIcon />
+          <Avatars />
+        </div>
         <div className='d-flex justify-content-center'>{msgObj.text.counting} {msgObj.text.counter}</div>
         {/* <div className='d-flex justify-content-center'>{msgObj.text.counter}</div> */}
         <div className='d-flex justify-content-center'>{msgObj.text.clock.year}.{msgObj.text.clock.month}.{msgObj.text.clock.day} {msgObj.text.clock.hour}:{msgObj.text.clock.minute}</div>

@@ -6,14 +6,14 @@ import Mode from './Mode'
 import Avatar from '@mui/material/Avatar';
 import { blue, blueGrey, deepPurple } from '@mui/material/colors';
 
-function Avatars({ checking }) {
+function Avatars({ altName }) {
     
   return (
     <div>
         {/* <Avatar sx={{ bgcolor: blue[500] }} alt="Remy Sharp" src="./assets/groups.png" />
         <Avatar sx={{ bgcolor: blue[500] }} alt="Travis Howard" src="/static/images/avatar/2.jpg" />
         <Avatar sx={{ bgcolor: blue[500] }} alt="Cindy Baker" src="/static/images/avatar/3.jpg" /> */}
-        <Avatar sx={{ bgcolor: blue[500] }} alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+        <Avatar sx={{ bgcolor: blue[500] }} alt={altName} src="/static/images/avatar/3.jpg" />
     </div>  
   )
 }

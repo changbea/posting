@@ -87,7 +87,7 @@ function Navigation({ isLoggedIn, userObj, value, setValue, side, setSide, sideN
       <div>
         {/* <div> */}
         <div className={navControl} onClick={checking}>
-        <Avatars checking={checking}/>
+        <Avatars altName={userObj.displayName}/>
         {/* <input type="checkbox" id="nav-control" className="nav-control" onClick={handleClick}/> */}
           <label htmlFor="nav-control" className="toggle-button">
             <div className="wolverine">
