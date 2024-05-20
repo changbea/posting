@@ -5,6 +5,7 @@ import { collection, query, where, orderBy, addDoc, getDocs, doc, onSnapshot, de
 import Rating from '@mui/material/Rating';
 import Popover from '@mui/material/Popover';
 import path from './assets/help_FILL0_wght400_GRAD0_opsz24.png';
+// import location from './location'
 import Lotties from './Lotties'
 import Dialogs from './Dialogs'
 import Pickers from './Pickers'
@@ -128,6 +129,34 @@ function Add({ isLoggedIn, userObj, valuing }) {
   const roomTwo = Array(315).fill().map((value, index) => <option key={index+1} value={index+1}>{index+1}</option>)
   const roomThree = Array(156).fill().map((value, index) => <option key={index+1} value={index+1}>{index+1}</option>)
   const roomFour = Array(149).fill().map((value, index) => <option key={index+1} value={index+1}>{index+1}</option>)
+  const location = {
+    cl : [
+        '1열(1F)', 
+        '2열(2F)', 
+        '3열(2F)', 
+        '4열(4F)', 
+        '1층 책상', 
+        '1층 세미나실', 
+        '1층 집중열', 
+        '매점(2F)', 
+        '카페(1F)', 
+        '중앙자료실 책상(3F)', 
+        '참고열람실 책상(4F)', 
+        '정기간행물 책상(4F)'
+    ].map((value, index) => <option key={index+1} value={index+1}>{value}</option>),
+    cw : [
+        '매점(B1)', 
+        '글로벌존(B1)'
+    ].map((value, index) => <option key={index+1} value={index+1}>{value}</option>),
+    p : ['매점(1F)'].map((value, index) => <option key={index+1} value={index+1}>{value}</option>),
+    g : ['카페(B2)', '열람실(B2)'].map((value, index) => <option key={index+1} value={index+1}>{value}</option>),
+    k : ['카페'].map((value, index) => <option key={index+1} value={index+1}>{value}</option>),
+    m : ['복사실'].map((value, index) => <option key={index+1} value={index+1}>{value}</option>),
+    e : ['1열(5F)', '2열(6F)'].map((value, index) => <option key={index+1} value={index+1}>{value}</option>),
+    c : ['1층 로비'].map((value, index) => <option key={index+1} value={index+1}>{value}</option>),
+    j : ['1층'].map((value, index) => <option key={index+1} value={index+1}>{value}</option>),
+}
+
   return (
     <div className='d-flex flex-column'>
         <div>
@@ -162,15 +191,36 @@ function Add({ isLoggedIn, userObj, valuing }) {
                             <option value={2}>two</option>
                             <option value={3}>three</option>
                             <option value={4}>four</option>
+                            <option value={'중도'}>중도</option>
+                            <option value={'청운'}>청운</option>
+                            <option value={'푸른솔'}>푸른솔</option>
+                            <option value={'간호이과대'}>간호이과대</option>
+                            <option value={'경영대'}>경영대</option>
+                            <option value={'문과대'}>문과대</option>
+                            <option value={'의과대'}>의과대</option>
+                            <option value={'치과병원'}>치과병원</option>
+                            <option value={'정문 노란 지붕'}>치과병원</option>
                         </select>
-                        <select className='form-control' form='selection' defaultValue={0} onChange={changeSeat}>  
-                            <option value={0} disabled>좌석을 알려주세요</option>
-                            {count == 1 && roomOne}
-                            {count == 5 && roomFocus}
-                            {count == 2 && roomTwo}
-                            {count == 3 && roomThree}
-                            {count == 4 && roomFour}
-                        </select>
+                        {count !== 0 && 
+                            <select className='form-control' form='selection' defaultValue={0} onChange={changeSeat}>  
+                                {/* <option value={0} disabled>좌석을 알려주세요</option> */}
+                                <option value={0} disabled>{count} 어딘가요</option>
+                                {count == 1 && roomOne}
+                                {count == 5 && roomFocus}
+                                {count == 2 && roomTwo}
+                                {count == 3 && roomThree}
+                                {count == 4 && roomFour}
+                                {count == '중도' && location.cl}
+                                {count == '청운' && location.cw}
+                                {count == '푸른솔' && location.p}
+                                {count == '간호이과대' && location.g}
+                                {count == '경영대' && location.k}
+                                {count == '문과대' && location.m}
+                                {count == '의과대' && location.e}
+                                {count == '치과병원' && location.c}
+                                {count == '정문 노란 지붕' && location.j}
+                            </select>
+                        }
                     </div>
                     <div>언제부터 언제까지인가요</div>
                     <Pickers onChangeFrom={onChangeFrom} onChangeTo={onChangeTo} />

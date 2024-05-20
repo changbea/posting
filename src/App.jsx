@@ -26,7 +26,7 @@ function App() {
 
   return (
     <div>
-      {init ? <Router isLoggedIn={isLoggedIn} userObj={userObj} newAccount={newAccount} setNewAccount={setNewAccount}/> : <Lotties/>}
+      {init ? <Router isLoggedIn={isLoggedIn} userObj={userObj} setUserObj={setUserObj} newAccount={newAccount} setNewAccount={setNewAccount}/> : <Lotties/>}
     </div>
   )
 }

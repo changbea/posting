@@ -18,7 +18,7 @@ function Auth({ newAccount, setNewAccount }) {
       let data;
       if (newAccount.account) {
         data = await createUserWithEmailAndPassword(auth, email, password)
-        
+        console.log(data)
         await setDoc(doc(dbservice, 'members', `${data.user.uid}`), {
           uid: data.user.uid,
           displayName: data.user.uid,

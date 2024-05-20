@@ -20,6 +20,12 @@ const onClick = (choose, setChoose) => {
     if (document.body.classList.contains("dark-theme")) {
       theme = "dark";
     }
+    if (document.getElementsByClassName("d-flex")) {
+        const array = Array.from(document.getElementsByClassName("d-flex"))
+        array.map((msg) => {
+            msg.className=`${document.getElementsByClassName("d-flex").className} dark-theme`
+        })
+    }
     localStorage.setItem("theme", theme);
   
 }

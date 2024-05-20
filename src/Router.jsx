@@ -9,7 +9,7 @@ import Specific from './Specific'
 import Navigation from './Navigation'
 import Navigations from './Navigations'
 
-function Router({ isLoggedIn, userObj, newAccount, setNewAccount }) {
+function Router({ isLoggedIn, userObj, setUserObj, newAccount, setNewAccount }) {
     const [counter, setCounter] = useState([]);
     const [value, setValue] = useState(2);
     const [side, setSide] = useState('d-flex flex-column');
@@ -23,7 +23,7 @@ function Router({ isLoggedIn, userObj, newAccount, setNewAccount }) {
                 {
                     isLoggedIn ? (
                         <Route>
-                            <Route path='/posting/' Component={() => <Home isLoggedIn={isLoggedIn} userObj={userObj} value={value} newAccount={newAccount} setNewAccount={setNewAccount} side={side} setSide={setSide} setValue={setValue} counter={counter} setCounter={setCounter}/>}/>
+                            <Route path='/posting/' Component={() => <Home isLoggedIn={isLoggedIn} userObj={userObj} setUserObj={setUserObj} value={value} newAccount={newAccount} setNewAccount={setNewAccount} side={side} setSide={setSide} setValue={setValue} counter={counter} setCounter={setCounter}/>}/>
                             {/* <Route path='/posting/sign' Component={() => <Home isLoggedIn={isLoggedIn} userObj={userObj} value={value} newAccount={newAccount} setNewAccount={setNewAccount}/>}/> */}
                             <Route path='/posting/profile' Component={() => <Profile userObj={userObj} side={side} setSide={setSide}/>}/>
                             <Route path='/posting/ranking' Component={() => <Ranking userObj={userObj} side={side} setSide={setSide}/>}/>
@@ -31,7 +31,7 @@ function Router({ isLoggedIn, userObj, newAccount, setNewAccount }) {
                         </Route>
                     ) : (
                         <Route>
-                            <Route path='/posting/' Component={() => <Home isLoggedIn={isLoggedIn} userObj={{uid: null}} value={value} newAccount={newAccount} setNewAccount={setNewAccount} side={side} setSide={setSide} setValue={setValue} counter={counter} setCounter={setCounter}/>}/>
+                            <Route path='/posting/' Component={() => <Home isLoggedIn={isLoggedIn} userObj={{uid: null}} setUserObj={setUserObj} value={value} newAccount={newAccount} setNewAccount={setNewAccount} side={side} setSide={setSide} setValue={setValue} counter={counter} setCounter={setCounter}/>}/>
                             <Route path='/posting/specific' Component={() => <Specific />}/>
                             {/* <Route path='/posting/sign' Component={() => <Home isLoggedIn={isLoggedIn} userObj={{uid: null}} value={1} newAccount={newAccount} setNewAccount={setNewAccount}/>}/> */}
                         </Route>

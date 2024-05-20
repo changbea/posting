@@ -7,7 +7,7 @@ import Add from './Add'
 // import Navigations from './Navigations'
 import { auth, onSocialClick, dbservice, storage } from './serverbase'
 
-function Home({ isLoggedIn, userObj, value, newAccount, setNewAccount, side, setSide, setValue, counter, setCounter}) {
+function Home({ isLoggedIn, userObj, setUserObj, value, newAccount, setNewAccount, side, setSide, setValue, counter, setCounter}) {
     const [num, setNum] = useState(null)
     // const noticeBorrowOnClick = (boolean) => setNoticeBorrow(boolean)
     
@@ -60,7 +60,7 @@ function Home({ isLoggedIn, userObj, value, newAccount, setNewAccount, side, set
                         <Notice isLoggedIn={isLoggedIn} userObj={userObj} valuing={1}/>
                     }
                     {value === 1 &&
-                        <Auth newAccount={newAccount} userObj={userObj} valuing={value}/>
+                        <Auth newAccount={newAccount} setNewAccount={setNewAccount} userObj={userObj} setUserObj={setUserObj} valuing={value}/>
                     }
                     {value === 2 &&
                         <Notice isLoggedIn={isLoggedIn} userObj={userObj} valuing={4}/>

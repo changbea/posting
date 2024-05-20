@@ -7,7 +7,7 @@ import Mode from './Mode'
 import Avatars from './Avatars'
 
 const onLogOutClick = () => auth.signOut();
-function Navigation({ isLoggedIn, userObj, value, setValue, side, setSide, sideNavigation, setSideNavigation }) {
+function Navigation({ isLoggedIn, userObj, setUserObj, value, setValue, side, setSide, sideNavigation, setSideNavigation }) {
   // const [open, setOpen] = useState(false);
   const [check, setCheck] = useState(false)
   
@@ -67,7 +67,12 @@ function Navigation({ isLoggedIn, userObj, value, setValue, side, setSide, sideN
   //     return ('navigation')
   //   }
   // }
-
+  const logOut = (event) => {
+    onLogOutClick()
+    checkbox(event)
+    setValue(1)
+    setUserObj(null)
+  }
   let navControl
   let navigation
   if (check) {
@@ -87,7 +92,12 @@ function Navigation({ isLoggedIn, userObj, value, setValue, side, setSide, sideN
       <div>
         {/* <div> */}
         <div className={navControl} onClick={checking}>
-        <Avatars altName={userObj.displayName}/>
+        {userObj &&
+          <Avatars altName={userObj.displayName}/>
+        }
+        {!userObj &&
+          <Avatars />
+        }
         {/* <input type="checkbox" id="nav-control" className="nav-control" onClick={handleClick}/> */}
           <label htmlFor="nav-control" className="toggle-button">
             <div className="wolverine">
@@ -111,13 +121,8 @@ function Navigation({ isLoggedIn, userObj, value, setValue, side, setSide, sideN
             <Link to='/posting/ranking' onClick={(event) => checkbox(event)}>유저 랭킹</Link>
           </h1>
           <h1>
-            <Link to="/posting/contact" onClick={(event) => checkbox(event)}>신고하기</Link>
-          </h1>
-          <h1>
             <Link to="/posting/" onClick={(event) => {
-              onLogOutClick()
-              checkbox(event)
-              setValue(1)
+              logOut(event)
             }}>로그아웃</Link>
           </h1>
         </nav>
@@ -125,7 +130,7 @@ function Navigation({ isLoggedIn, userObj, value, setValue, side, setSide, sideN
         {!isLoggedIn &&
           <nav className={navigation} onPointerDown={(event) => add(event)} onPointerUp={(event) => remove(event)}>
             <h5 className='nav-padding'>
-              <Link to='/posting/' onClick={(event) => checkbox(event)}>메인 페이지</Link>
+              <Mode/>
             </h5>
             <h1 className='nav-padding'>
               <Link to='/posting/' onClick={(event) => checkbox(event)}>메인 페이지</Link>
